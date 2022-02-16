@@ -135,11 +135,11 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '0.10.0-dev'
 
-[dependencies.sp-consensus-rrsc]
+[dependencies.cessp-consensus-rrsc]
 path = '../primitives/consensus/rrsc'
 version = '0.10.0-dev'
 
-[dependencies.sp-core]
+[dependencies.cessp-core]
 path = '../primitives/core'
 version = '4.0.0-dev'
 

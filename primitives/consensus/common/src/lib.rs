@@ -75,12 +75,12 @@ pub enum BlockOrigin {
 	File,
 }
 
-impl From<BlockOrigin> for sp_core::ExecutionContext {
+impl From<BlockOrigin> for cessp_core::ExecutionContext {
 	fn from(origin: BlockOrigin) -> Self {
 		if origin == BlockOrigin::NetworkInitialSync {
-			sp_core::ExecutionContext::Syncing
+			cessp_core::ExecutionContext::Syncing
 		} else {
-			sp_core::ExecutionContext::Importing
+			cessp_core::ExecutionContext::Importing
 		}
 	}
 }

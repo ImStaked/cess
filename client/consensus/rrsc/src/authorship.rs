@@ -4,12 +4,12 @@ use super::Epoch;
 use codec::Encode;
 use schnorrkel::{keys::PublicKey, vrf::VRFInOut};
 use sp_application_crypto::AppKey;
-use sp_consensus_rrsc::{
+use cessp_consensus_rrsc::{
 	digests::{PreDigest, PrimaryPreDigest, SecondaryPlainPreDigest, SecondaryVRFPreDigest},
 	make_transcript, make_transcript_data, AuthorityId, RRSCAuthorityWeight, Slot, RRSC_VRF_PREFIX,
 };
-use sp_consensus_vrf::schnorrkel::{VRFOutput, VRFProof};
-use sp_core::{blake2_256, crypto::Public, U256};
+use cessp_consensus_vrf::schnorrkel::{VRFOutput, VRFProof};
+use cessp_core::{blake2_256, crypto::Public, U256};
 use sp_keystore::{SyncCryptoStore, SyncCryptoStorePtr};
 
 /// Calculates the primary selection threshold for a given authority, taking

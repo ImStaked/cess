@@ -23,8 +23,8 @@ pallet-authorship = { version = "4.0.0-dev", default-features = false, git = "ht
 pallet-session = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 pallet-timestamp = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 sp-application-crypto = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-consensus-rrsc = { version = "0.10.0-dev", default-features = false, path = "../../primitives/consensus/rrsc" }
-sp-consensus-vrf = { version = "0.10.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-consensus-rrsc = { version = "0.10.0-dev", default-features = false, path = "../../primitives/consensus/rrsc" }
+cessp-consensus-vrf = { version = "0.10.0-dev", default-features = false, path = "../../primitives/consensus/vrf" }
 sp-io = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 sp-runtime = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 sp-session = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
@@ -37,8 +37,7 @@ pallet-balances = { version = "4.0.0-dev", git = "https://github.com/paritytech/
 pallet-offences = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 pallet-staking = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 pallet-staking-reward-curve = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-core = { version = "4.0.0-dev", path = "../../primitives/core" }
-#sp-core = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-core = { version = "4.0.0-dev", path = "../../primitives/core" }
 frame-election-provider-support = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 
 [features]
@@ -52,8 +51,8 @@ std = [
 	"pallet-session/std",
 	"pallet-timestamp/std",
 	"sp-application-crypto/std",
-	"sp-consensus-rrsc/std",
-	"sp-consensus-vrf/std",
+	"cessp-consensus-rrsc/std",
+	"cessp-consensus-vrf/std",
 	"sp-io/std",
 	"sp-runtime/std",
 	"sp-session/std",

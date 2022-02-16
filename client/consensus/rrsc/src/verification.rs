@@ -5,7 +5,7 @@ use super::{
 };
 use log::{debug, trace};
 use sc_consensus_slots::CheckedHeader;
-use sp_consensus_rrsc::{
+use cessp_consensus_rrsc::{
 	digests::{
 		CompatibleDigestItem, PreDigest, PrimaryPreDigest, SecondaryPlainPreDigest,
 		SecondaryVRFPreDigest,
@@ -13,7 +13,7 @@ use sp_consensus_rrsc::{
 	make_transcript, AuthorityId, AuthorityPair, AuthoritySignature,
 };
 use sp_consensus_slots::Slot;
-use sp_core::{Pair, Public};
+use cessp_core::{Pair, Public};
 use sp_runtime::traits::{DigestItemFor, Header};
 
 /// RRSC verification parameters

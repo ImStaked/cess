@@ -24,8 +24,8 @@ pub mod digests;
 pub mod inherents;
 
 pub use merlin::Transcript;
-pub use sp_consensus_slots::Slot;
-pub use sp_consensus_vrf::schnorrkel::{
+pub use cessp_consensus_slots::Slot;
+pub use cessp_consensus_vrf::schnorrkel::{
 	Randomness, RANDOMNESS_LENGTH, VRF_OUTPUT_LENGTH, VRF_PROOF_LENGTH,
 };
 
@@ -84,7 +84,7 @@ pub const MEDIAN_ALGORITHM_CARDINALITY: usize = 1200; // arbitrary suggestion by
 pub type AuthorityIndex = u32;
 
 /// An equivocation proof for multiple block authorships on the same slot (i.e. double vote).
-pub type EquivocationProof<H> = sp_consensus_slots::EquivocationProof<H, AuthorityId>;
+pub type EquivocationProof<H> = cessp_consensus_slots::EquivocationProof<H, AuthorityId>;
 
 /// The weight of an authority.
 // NOTE: we use a unique name for the weight to avoid conflicts with other
@@ -240,7 +240,7 @@ impl AllowedSlots {
 }
 
 #[cfg(feature = "std")]
-impl sp_consensus::SlotData for RRSCGenesisConfiguration {
+impl cessp_consensus::SlotData for RRSCGenesisConfiguration {
 	fn slot_duration(&self) -> std::time::Duration {
 		std::time::Duration::from_millis(self.slot_duration)
 	}

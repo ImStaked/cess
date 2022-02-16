@@ -23,8 +23,7 @@ frame-support = { version = "4.0.0-dev", default-features = false, git = "https:
 frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 pallet-treasury = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 sp-io = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10', default-features = false }
-sp-core = { version = "4.0.0-dev", path = "../../primitives/core", default-features = false }
-# sp-core = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-core = { version = "4.0.0-dev", path = "../../primitives/core", default-features = false }
 frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10', optional = true }
 log = { version = "0.4.14", default-features = false }
 
@@ -35,7 +34,7 @@ pallet-balances = { version = "4.0.0-dev", git = "https://github.com/paritytech/
 default = ["std"]
 std = [
 	"codec/std",
-	"sp-core/std",
+	"cessp-core/std",
 	"sp-io/std",
 	"scale-info/std",
 	"sp-std/std",

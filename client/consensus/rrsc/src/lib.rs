@@ -44,13 +44,13 @@ use sp_block_builder::BlockBuilder as BlockBuilderApi;
 use sp_blockchain::{
 	Error as ClientError, HeaderBackend, HeaderMetadata, ProvideCache, Result as ClientResult,
 };
-use sp_consensus::{
+use cessp_consensus::{
 	BlockOrigin, CacheKeyId, CanAuthorWith, Environment, Error as ConsensusError, Proposer,
 	SelectChain, SlotData,
 };
-use sp_consensus_rrsc::inherents::RRSCInherentData;
+use cessp_consensus_rrsc::inherents::RRSCInherentData;
 use sp_consensus_slots::Slot;
-use sp_core::{crypto::Public, ExecutionContext};
+use cessp_core::{crypto::Public, ExecutionContext};
 use sp_inherents::{CreateInherentDataProviders, InherentData, InherentDataProvider};
 use sp_keystore::{SyncCryptoStore, SyncCryptoStorePtr};
 use sp_runtime::{
@@ -59,8 +59,8 @@ use sp_runtime::{
 };
 
 pub use sc_consensus_slots::SlotProportion;
-pub use sp_consensus::SyncOracle;
-pub use sp_consensus_rrsc::{
+pub use cessp_consensus::SyncOracle;
+pub use cessp_consensus_rrsc::{
 	digests::{
 		CompatibleDigestItem, NextConfigDescriptor, NextEpochDescriptor, PreDigest,
 		PrimaryPreDigest, SecondaryPlainPreDigest,
@@ -124,8 +124,8 @@ impl EpochT for Epoch {
 	}
 }
 
-impl From<sp_consensus_rrsc::Epoch> for Epoch {
-	fn from(epoch: sp_consensus_rrsc::Epoch) -> Self {
+impl From<cessp_consensus_rrsc::Epoch> for Epoch {
+	fn from(epoch: cessp_consensus_rrsc::Epoch) -> Self {
 		Epoch {
 			epoch_index: epoch.epoch_index,
 			start_slot: epoch.start_slot,
@@ -172,7 +172,7 @@ pub enum Error<B: BlockT> {
 	MultipleConfigChangeDigests,
 	/// Could not extract timestamp and slot
 	#[display(fmt = "Could not extract timestamp and slot: {:?}", _0)]
-	Extraction(sp_consensus::Error),
+	Extraction(cessp_consensus::Error),
 	/// Could not fetch epoch
 	#[display(fmt = "Could not fetch epoch at {:?}", _0)]
 	FetchEpoch(B::Hash),
@@ -399,7 +399,7 @@ pub fn start_rrsc<B, C, SC, E, I, SO, CIDP, BS, CAW, L, Error>(
 		max_block_proposal_slot_portion,
 		telemetry,
 	}: RRSCParams<B, C, SC, E, I, SO, L, CIDP, BS, CAW>,
-) -> Result<RRSCWorker<B>, sp_consensus::Error>
+) -> Result<RRSCWorker<B>, cessp_consensus::Error>
 where
 	B: BlockT,
 	C: ProvideRuntimeApi<B>
@@ -507,7 +507,7 @@ async fn answer_requests<B: BlockT, C>(
 						})
 						.ok_or_else(|| Error::<B>::FetchEpoch(parent_hash))?;
 
-					Ok(sp_consensus_rrsc::Epoch {
+					Ok(cessp_consensus_rrsc::Epoch {
 						epoch_index: viable_epoch.as_ref().epoch_index,
 						start_slot: viable_epoch.as_ref().start_slot,
 						duration: viable_epoch.as_ref().duration,
@@ -533,7 +533,7 @@ pub enum RRSCRequest<B: BlockT> {
 		B::Hash,
 		NumberFor<B>,
 		Slot,
-		oneshot::Sender<Result<sp_consensus_rrsc::Epoch, Error<B>>>,
+		oneshot::Sender<Result<cessp_consensus_rrsc::Epoch, Error<B>>>,
 	),
 }
 
@@ -632,7 +632,7 @@ where
 	type SyncOracle = SO;
 	type JustificationSyncLink = L;
 	type CreateProposer =
-		Pin<Box<dyn Future<Output = Result<E::Proposer, sp_consensus::Error>> + Send + 'static>>;
+		Pin<Box<dyn Future<Output = Result<E::Proposer, cessp_consensus::Error>> + Send + 'static>>;
 	type Proposer = E::Proposer;
 	type BlockImport = I;
 
@@ -658,7 +658,7 @@ where
 				slot,
 			)
 			.map_err(|e| ConsensusError::ChainLookup(format!("{:?}", e)))?
-			.ok_or(sp_consensus::Error::InvalidAuthoritiesSet)
+			.ok_or(cessp_consensus::Error::InvalidAuthoritiesSet)
 	}
 
 	fn authorities_len(&self, epoch_descriptor: &Self::EpochData) -> Option<usize> {
@@ -729,7 +729,7 @@ where
 				StorageChanges<I::Transaction, B>,
 				Self::Claim,
 				Self::EpochData,
-			) -> Result<sc_consensus::BlockImportParams<B, I::Transaction>, sp_consensus::Error>
+			) -> Result<sc_consensus::BlockImportParams<B, I::Transaction>, cessp_consensus::Error>
 			+ Send
 			+ 'static,
 	> {
@@ -746,9 +746,9 @@ where
 					&public_type_pair,
 					header_hash.as_ref(),
 				)
-				.map_err(|e| sp_consensus::Error::CannotSign(public.clone(), e.to_string()))?
+				.map_err(|e| cessp_consensus::Error::CannotSign(public.clone(), e.to_string()))?
 				.ok_or_else(|| {
-					sp_consensus::Error::CannotSign(
+					cessp_consensus::Error::CannotSign(
 						public.clone(),
 						"Could not find key in keystore.".into(),
 					)
@@ -756,7 +756,7 @@ where
 				let signature: AuthoritySignature = signature
 					.clone()
 					.try_into()
-					.map_err(|_| sp_consensus::Error::InvalidSignature(signature, public))?;
+					.map_err(|_| cessp_consensus::Error::InvalidSignature(signature, public))?;
 				let digest_item =
 					<DigestItemFor<B> as CompatibleDigestItem>::rrsc_seal(signature.into());
 
@@ -809,7 +809,7 @@ where
 		Box::pin(
 			self.env
 				.init(block)
-				.map_err(|e| sp_consensus::Error::ClientImport(format!("{:?}", e))),
+				.map_err(|e| cessp_consensus::Error::ClientImport(format!("{:?}", e))),
 		)
 	}
 
@@ -934,7 +934,7 @@ where
 	Block: BlockT,
 	Client: AuxStore + HeaderBackend<Block> + HeaderMetadata<Block> + ProvideRuntimeApi<Block>,
 	Client::Api: BlockBuilderApi<Block> + RRSCApi<Block>,
-	SelectChain: sp_consensus::SelectChain<Block>,
+	SelectChain: cessp_consensus::SelectChain<Block>,
 	CAW: CanAuthorWith<Block>,
 	CIDP: CreateInherentDataProviders<Block, ()>,
 {
@@ -1072,7 +1072,7 @@ where
 		+ AuxStore
 		+ ProvideCache<Block>,
 	Client::Api: BlockBuilderApi<Block> + RRSCApi<Block>,
-	SelectChain: sp_consensus::SelectChain<Block>,
+	SelectChain: cessp_consensus::SelectChain<Block>,
 	CAW: CanAuthorWith<Block> + Send + Sync,
 	CIDP: CreateInherentDataProviders<Block, ()> + Send + Sync,
 	CIDP::InherentDataProviders: InherentDataProviderExt + Send + Sync,
@@ -1107,7 +1107,7 @@ where
 			.create_inherent_data_providers
 			.create_inherent_data_providers(parent_hash, ())
 			.await
-			.map_err(|e| Error::<Block>::Client(sp_consensus::Error::from(e).into()))?;
+			.map_err(|e| Error::<Block>::Client(cessp_consensus::Error::from(e).into()))?;
 
 		let slot_now = create_inherent_data_providers.slot();
 
@@ -1672,7 +1672,7 @@ pub fn import_queue<Block: BlockT, Client, SelectChain, Inner, CAW, CIDP>(
 	client: Arc<Client>,
 	select_chain: SelectChain,
 	create_inherent_data_providers: CIDP,
-	spawner: &impl sp_core::traits::SpawnEssentialNamed,
+	spawner: &impl cessp_core::traits::SpawnEssentialNamed,
 	registry: Option<&Registry>,
 	can_author_with: CAW,
 	telemetry: Option<TelemetryHandle>,
@@ -1694,7 +1694,7 @@ where
 		+ Sync
 		+ 'static,
 	Client::Api: BlockBuilderApi<Block> + RRSCApi<Block> + ApiExt<Block>,
-	SelectChain: sp_consensus::SelectChain<Block> + 'static,
+	SelectChain: cessp_consensus::SelectChain<Block> + 'static,
 	CAW: CanAuthorWith<Block> + Send + Sync + 'static,
 	CIDP: CreateInherentDataProviders<Block, ()> + Send + Sync + 'static,
 	CIDP::InherentDataProviders: InherentDataProviderExt + Send + Sync,

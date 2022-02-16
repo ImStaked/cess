@@ -73,7 +73,7 @@ version = '4.0.0-dev'
 optional = true
 version = '0.3.1'
 
-[dependencies.pallet-rrsc]
+[dependencies.pallet-cess-rrsc]
 default-features = false
 path = '../frame/rrsc'
 version = '1.0.0-dev'
@@ -132,12 +132,12 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.sp-consensus-rrsc]
+[dependencies.cessp-consensus-rrsc]
 default-features = false
 path = '../primitives/consensus/rrsc'
 version = '0.10.0-dev'
 
-[dependencies.sp-core]
+[dependencies.cessp-core]
 default-features = false
 path = '../primitives/core'
 version = '4.0.0-dev'
@@ -269,7 +269,7 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.pallet-bounties]
+[dependencies.pallet-cess-bounties]
 default-features = false
 path = '../frame/bounties'
 version = '4.0.0-dev'
@@ -348,7 +348,7 @@ runtime-benchmarks = [
 std = [
     "pallet-authority-discovery/std",
     "pallet-authorship/std",
-    "pallet-bounties/std",
+    "pallet-cess-bounties/std",
     "pallet-collective/std",
     "pallet-election-provider-multi-phase/std",
     "pallet-im-online/std",
@@ -370,7 +370,7 @@ std = [
     'frame-support/std',
     'frame-system-rpc-runtime-api/std',
     'frame-system/std',
-    'pallet-rrsc/std',
+    'pallet-cess-rrsc/std',
     'pallet-bags-list/std',
     'pallet-balances/std',
     'pallet-grandpa/std',
@@ -385,8 +385,8 @@ std = [
     'scale-info/std',
     'sp-api/std',
     'sp-block-builder/std',
-    'sp-consensus-rrsc/std',
-    'sp-core/std',
+    'cessp-consensus-rrsc/std',
+    'cessp-core/std',
     'sp-inherents/std',
     'sp-offchain/std',
     'sp-runtime/std',

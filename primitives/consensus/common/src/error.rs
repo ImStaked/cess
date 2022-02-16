@@ -16,7 +16,7 @@
 // limitations under the License.
 
 //! Error types in Consensus
-use sp_core::ed25519::Public;
+use cessp_core::ed25519::Public;
 use sp_version::RuntimeVersion;
 use std::error;
 

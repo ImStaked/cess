@@ -19,11 +19,10 @@ codec = { package = "parity-scale-codec", version = "2.0.0", default-features = 
 merlin = { version = "2.0", default-features = false }
 sp-std = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 sp-api = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-consensus = { version = "0.10.0-dev", optional = true, path = "../common" }
-sp-consensus-slots = { version = "0.10.0-dev", default-features = false, path = "../slots" }
-sp-consensus-vrf = { version = "0.10.0-dev", path = "../vrf", default-features = false }
-sp-core = { version = "4.0.0-dev", default-features = false, path = "../../../primitives/core" }
-# sp-core = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-consensus = { version = "0.10.0-dev", optional = true, path = "../common" }
+cessp-consensus-slots = { version = "0.10.0-dev", default-features = false, path = "../slots" }
+cessp-consensus-vrf = { version = "0.10.0-dev", path = "../vrf", default-features = false }
+cessp-core = { version = "4.0.0-dev", default-features = false, path = "../../../primitives/core" }
 sp-inherents = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 sp-keystore = { version = "0.10.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", optional = true, tag = 'monthly-2021-10' }
 sp-runtime = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
@@ -39,10 +38,10 @@ std = [
 	"merlin/std",
 	"sp-std/std",
 	"sp-api/std",
-	"sp-consensus",
-	"sp-consensus-slots/std",
-	"sp-consensus-vrf/std",
-	"sp-core/std",
+	"cessp-consensus",
+	"cessp-consensus-slots/std",
+	"cessp-consensus-vrf/std",
+	"cessp-core/std",
 	"sp-inherents/std",
 	"sp-keystore",
 	"sp-runtime/std",

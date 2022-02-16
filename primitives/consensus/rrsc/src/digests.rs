@@ -25,7 +25,7 @@ use codec::{Codec, Decode, Encode};
 use sp_runtime::{DigestItem, RuntimeDebug};
 use sp_std::vec::Vec;
 
-use sp_consensus_vrf::schnorrkel::{Randomness, VRFOutput, VRFProof};
+use cessp_consensus_vrf::schnorrkel::{Randomness, VRFOutput, VRFProof};
 
 /// Raw RRSC primary slot assignment pre-digest.
 #[derive(Clone, RuntimeDebug, Encode, Decode)]

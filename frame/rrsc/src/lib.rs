@@ -18,14 +18,14 @@ use sp_runtime::{
 use sp_session::{GetSessionNumber, GetValidatorCount};
 use sp_std::prelude::*;
 
-use sp_consensus_rrsc::{
+use cessp_consensus_rrsc::{
 	digests::{NextConfigDescriptor, NextEpochDescriptor, PreDigest},
 	RRSCAuthorityWeight, RRSCEpochConfiguration, ConsensusLog, Epoch, EquivocationProof, Slot,
 	RRSC_ENGINE_ID,
 };
-use sp_consensus_vrf::schnorrkel;
+use cessp_consensus_vrf::schnorrkel;
 
-pub use sp_consensus_rrsc::{AuthorityId, PUBLIC_KEY_LENGTH, RANDOMNESS_LENGTH, VRF_OUTPUT_LENGTH};
+pub use cessp_consensus_rrsc::{AuthorityId, PUBLIC_KEY_LENGTH, RANDOMNESS_LENGTH, VRF_OUTPUT_LENGTH};
 
 mod default_weights;
 mod equivocation;
@@ -680,7 +680,7 @@ impl<T: Config> Pallet<T> {
 					.get(authority_index as usize)
 					.and_then(|author| schnorrkel::PublicKey::from_bytes(author.0.as_slice()).ok())
 					.and_then(|pubkey| {
-						let transcript = sp_consensus_rrsc::make_transcript(
+						let transcript = cessp_consensus_rrsc::make_transcript(
 							&Self::randomness(),
 							current_slot,
 							EpochIndex::<T>::get(),
@@ -688,7 +688,7 @@ impl<T: Config> Pallet<T> {
 
 						vrf_output.0.attach_input_hash(&pubkey, transcript).ok()
 					})
-					.map(|inout| inout.make_bytes(&sp_consensus_rrsc::RRSC_VRF_INOUT_CONTEXT))
+					.map(|inout| inout.make_bytes(&cessp_consensus_rrsc::RRSC_VRF_INOUT_CONTEXT))
 			})
 		});
 
@@ -741,7 +741,7 @@ impl<T: Config> Pallet<T> {
 		let slot = equivocation_proof.slot;
 
 		// validate the equivocation proof
-		if !sp_consensus_rrsc::check_equivocation_proof(equivocation_proof) {
+		if !cessp_consensus_rrsc::check_equivocation_proof(equivocation_proof) {
 			return Err(Error::<T>::InvalidEquivocationProof.into())
 		}
 
@@ -758,7 +758,7 @@ impl<T: Config> Pallet<T> {
 		}
 
 		// check the membership proof and extract the offender's id
-		let key = (sp_consensus_rrsc::KEY_TYPE, offender);
+		let key = (cessp_consensus_rrsc::KEY_TYPE, offender);
 		let offender = T::KeyOwnerProofSystem::check_proof(key, key_owner_proof)
 			.ok_or(Error::<T>::InvalidKeyOwnershipProof)?;
 

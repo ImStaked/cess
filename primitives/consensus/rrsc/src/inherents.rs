@@ -25,7 +25,7 @@ use sp_std::result::Result;
 pub const INHERENT_IDENTIFIER: InherentIdentifier = *b"rrscslot";
 
 /// The type of the RRSC inherent.
-pub type InherentType = sp_consensus_slots::Slot;
+pub type InherentType = cessp_consensus_slots::Slot;
 /// Auxiliary trait to extract RRSC inherent data.
 pub trait RRSCInherentData {
 	/// Get RRSC inherent data.

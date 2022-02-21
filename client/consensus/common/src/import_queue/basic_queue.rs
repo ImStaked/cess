@@ -23,7 +23,7 @@ use futures_timer::Delay;
 use log::{debug, trace};
 use prometheus_endpoint::Registry;
 use sc_utils::mpsc::{tracing_unbounded, TracingUnboundedReceiver, TracingUnboundedSender};
-use sp_consensus::BlockOrigin;
+use cessp_consensus::BlockOrigin;
 use sp_runtime::{
 	traits::{Block as BlockT, Header as HeaderT, NumberFor},
 	Justification, Justifications,
@@ -68,7 +68,7 @@ impl<B: BlockT, Transaction: Send + 'static> BasicQueue<B, Transaction> {
 		verifier: V,
 		block_import: BoxBlockImport<B, Transaction>,
 		justification_import: Option<BoxJustificationImport<B>>,
-		spawner: &impl sp_core::traits::SpawnEssentialNamed,
+		spawner: &impl cessp_core::traits::SpawnEssentialNamed,
 		prometheus_registry: Option<&Registry>,
 	) -> Self {
 		let (result_sender, result_port) = buffered_link::buffered_link();
@@ -464,7 +464,7 @@ mod tests {
 
 	#[async_trait::async_trait]
 	impl BlockImport<Block> for () {
-		type Error = sp_consensus::Error;
+		type Error = cessp_consensus::Error;
 		type Transaction = Extrinsic;
 
 		async fn check_block(
@@ -485,7 +485,7 @@ mod tests {
 
 	#[async_trait::async_trait]
 	impl JustificationImport<Block> for () {
-		type Error = sp_consensus::Error;
+		type Error = cessp_consensus::Error;
 
 		async fn on_start(&mut self) -> Vec<(Hash, BlockNumber)> {
 			Vec::new()

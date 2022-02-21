@@ -25,7 +25,7 @@ use sp_runtime::{
 };
 use std::{any::Any, borrow::Cow, collections::HashMap, sync::Arc};
 
-use sp_consensus::{BlockOrigin, CacheKeyId, Error};
+use cessp_consensus::{BlockOrigin, CacheKeyId, Error};
 
 /// Block import result.
 #[derive(Debug, PartialEq, Eq)]
@@ -345,7 +345,7 @@ impl<B: BlockT, Transaction> BlockImport<B> for crate::import_queue::BoxBlockImp
 where
 	Transaction: Send + 'static,
 {
-	type Error = sp_consensus::error::Error;
+	type Error = cessp_consensus::error::Error;
 	type Transaction = Transaction;
 
 	/// Check block preconditions.

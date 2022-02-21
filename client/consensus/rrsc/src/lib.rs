@@ -23,7 +23,7 @@ use retain_mut::RetainMut;
 use schnorrkel::SignatureError;
 
 use sc_client_api::{backend::AuxStore, BlockchainEvents, ProvideUncles, UsageProvider};
-use sc_consensus::{
+use cessc_consensus::{
 	block_import::{
 		BlockCheckParams, BlockImport, BlockImportParams, ForkChoiceStrategy, ImportResult,
 		StateAction,
@@ -420,7 +420,7 @@ where
 		+ Sync
 		+ 'static,
 	SO: SyncOracle + Send + Sync + Clone + 'static,
-	L: sc_consensus::JustificationSyncLink<B> + 'static,
+	L: cessc_consensus::JustificationSyncLink<B> + 'static,
 	CIDP: CreateInherentDataProviders<B, ()> + Send + Sync + 'static,
 	CIDP::InherentDataProviders: InherentDataProviderExt + Send,
 	BS: BackoffAuthoringBlocksStrategy<NumberFor<B>> + Send + 'static,
@@ -623,7 +623,7 @@ where
 	E::Proposer: Proposer<B, Error = Error, Transaction = sp_api::TransactionFor<C, B>>,
 	I: BlockImport<B, Transaction = sp_api::TransactionFor<C, B>> + Send + Sync + 'static,
 	SO: SyncOracle + Send + Clone,
-	L: sc_consensus::JustificationSyncLink<B>,
+	L: cessc_consensus::JustificationSyncLink<B>,
 	BS: BackoffAuthoringBlocksStrategy<NumberFor<B>>,
 	Error: std::error::Error + Send + From<ConsensusError> + From<I::Error> + 'static,
 {
@@ -729,7 +729,7 @@ where
 				StorageChanges<I::Transaction, B>,
 				Self::Claim,
 				Self::EpochData,
-			) -> Result<sc_consensus::BlockImportParams<B, I::Transaction>, cessp_consensus::Error>
+			) -> Result<cessc_consensus::BlockImportParams<B, I::Transaction>, cessp_consensus::Error>
 			+ Send
 			+ 'static,
 	> {
@@ -764,7 +764,7 @@ where
 				import_block.post_digests.push(digest_item);
 				import_block.body = Some(body);
 				import_block.state_action = StateAction::ApplyChanges(
-					sc_consensus::StorageChanges::Changes(storage_changes),
+					cessc_consensus::StorageChanges::Changes(storage_changes),
 				);
 				import_block.intermediates.insert(
 					Cow::from(INTERMEDIATE_KEY),

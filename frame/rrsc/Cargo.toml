@@ -25,7 +25,7 @@ pallet-timestamp = { version = "4.0.0-dev", default-features = false, git = "htt
 sp-application-crypto = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 cessp-consensus-rrsc = { version = "0.10.0-dev", default-features = false, path = "../../primitives/consensus/rrsc" }
 cessp-consensus-vrf = { version = "0.10.0-dev", default-features = false, path = "../../primitives/consensus/vrf" }
-sp-io = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-io = { version = "4.0.0-dev", default-features = false, path = "../../primitives/io" }
 sp-runtime = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 sp-session = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 sp-staking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
@@ -53,7 +53,7 @@ std = [
 	"sp-application-crypto/std",
 	"cessp-consensus-rrsc/std",
 	"cessp-consensus-vrf/std",
-	"sp-io/std",
+	"cessp-io/std",
 	"sp-runtime/std",
 	"sp-session/std",
 	"sp-staking/std",

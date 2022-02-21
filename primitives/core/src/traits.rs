@@ -23,7 +23,7 @@ use std::{
 	panic::UnwindSafe,
 };
 
-pub use sp_externalities::{Externalities, ExternalitiesExt};
+pub use cessp_externalities::{Externalities, ExternalitiesExt};
 
 /// Code execution engine.
 pub trait CodeExecutor: Sized + Send + Sync + ReadRuntimeVersion + Clone + 'static {
@@ -147,7 +147,7 @@ pub trait ReadRuntimeVersion: Send + Sync {
 	) -> Result<Vec<u8>, String>;
 }
 
-sp_externalities::decl_extension! {
+cessp_externalities::decl_extension! {
 	/// An extension that provides functionality to read version information from a given wasm blob.
 	pub struct ReadRuntimeVersionExt(Box<dyn ReadRuntimeVersion>);
 }
@@ -159,7 +159,7 @@ impl ReadRuntimeVersionExt {
 	}
 }
 
-sp_externalities::decl_extension! {
+cessp_externalities::decl_extension! {
 	/// Task executor extension.
 	pub struct TaskExecutorExt(Box<dyn SpawnNamed>);
 }
@@ -185,7 +185,7 @@ pub trait RuntimeSpawn: Send {
 }
 
 #[cfg(feature = "std")]
-sp_externalities::decl_extension! {
+cessp_externalities::decl_extension! {
 	/// Extension that supports spawning extra runtime instances in externalities.
 	pub struct RuntimeSpawnExt(Box<dyn RuntimeSpawn>);
 }

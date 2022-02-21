@@ -646,7 +646,7 @@ impl<T: Externalities> Externalities for LimitedExternalities<T> {
 }
 
 #[cfg(feature = "std")]
-sp_externalities::decl_extension! {
+cessp_externalities::decl_extension! {
 	/// The offchain worker extension that will be registered at the Substrate externalities.
 	pub struct OffchainWorkerExt(Box<dyn Externalities>);
 }
@@ -752,7 +752,7 @@ impl<T: DbExternalities> DbExternalities for LimitedExternalities<T> {
 }
 
 #[cfg(feature = "std")]
-sp_externalities::decl_extension! {
+cessp_externalities::decl_extension! {
 	/// The offchain database extension that will be registered at the Substrate externalities.
 	pub struct OffchainDbExt(Box<dyn DbExternalities>);
 }
@@ -779,7 +779,7 @@ pub trait TransactionPool {
 }
 
 #[cfg(feature = "std")]
-sp_externalities::decl_extension! {
+cessp_externalities::decl_extension! {
 	/// An externalities extension to submit transactions to the pool.
 	pub struct TransactionPoolExt(Box<dyn TransactionPool + Send>);
 }

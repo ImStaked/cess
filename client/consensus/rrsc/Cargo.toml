@@ -25,7 +25,7 @@ num-rational = "0.2.2"
 num-traits = "0.2.8"
 serde = { version = "1.0.126", features = ["derive"] }
 sp-version = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
-sp-io = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-io = { version = "4.0.0-dev", path = "../../../primitives/io" }
 sp-inherents = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 sc-telemetry = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 sc-keystore = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }

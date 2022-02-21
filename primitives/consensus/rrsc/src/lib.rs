@@ -41,14 +41,13 @@ use crate::digests::{NextConfigDescriptor, NextEpochDescriptor};
 
 /// Key type for RRSC module.
 
-pub const KEY_TYPE: sp_application_crypto::KeyTypeId = sp_application_crypto::KeyTypeId(*b"rrsc");
+//pub const KEY_TYPE: sp_application_crypto::KeyTypeId = sp_application_crypto::KeyTypeId(*b"rrsc");
 
-// pub const KEY_TYPE: sp_core::crypto::KeyTypeId =  sp_application_crypto::key_types::RRSC;
+pub const KEY_TYPE: cessp_core::crypto::KeyTypeId = cessp_application_crypto::key_types::RRSC;
 
 mod app {
-	use super::KEY_TYPE;
-	use sp_application_crypto::{app_crypto, sr25519};
-	app_crypto!(sr25519, KEY_TYPE);
+	use sp_application_crypto::{app_crypto, key_types::RRSC, sr25519};
+	app_crypto!(sr25519, RRSC);
 }
 
 /// The prefix used by RRSC for its VRF keys.

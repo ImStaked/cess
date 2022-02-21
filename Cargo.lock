@@ -818,6 +818,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "cessp-application-crypto"
+version = "4.0.0-dev"
+dependencies = [
+ "cessp-core",
+ "cessp-io",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-std",
+]
+
+[[package]]
 name = "cessp-consensus"
 version = "0.10.0-dev"
 dependencies = [
@@ -841,6 +853,7 @@ name = "cessp-consensus-rrsc"
 version = "0.10.0-dev"
 dependencies = [
  "async-trait",
+ "cessp-application-crypto",
  "cessp-consensus",
  "cessp-consensus-slots",
  "cessp-consensus-vrf",
@@ -850,7 +863,6 @@ dependencies = [
  "scale-info",
  "serde",
  "sp-api",
- "sp-application-crypto",
  "sp-inherents",
  "sp-keystore",
  "sp-runtime",
@@ -885,6 +897,7 @@ dependencies = [
  "base58",
  "blake2-rfc",
  "byteorder",
+ "cessp-externalities",
  "criterion",
  "dyn-clonable",
  "ed25519-dalek",
@@ -912,7 +925,6 @@ dependencies = [
  "serde_json",
  "sha2 0.9.9",
  "sp-debug-derive",
- "sp-externalities",
  "sp-runtime-interface",
  "sp-serializer",
  "sp-std",
@@ -924,6 +936,57 @@ dependencies = [
  "twox-hash",
  "wasmi",
  "zeroize",
+]
+
+[[package]]
+name = "cessp-externalities"
+version = "0.10.0-dev"
+dependencies = [
+ "environmental",
+ "parity-scale-codec",
+ "sp-std",
+ "sp-storage",
+]
+
+[[package]]
+name = "cessp-io"
+version = "4.0.0-dev"
+dependencies = [
+ "cessp-core",
+ "cessp-externalities",
+ "cessp-keystore",
+ "futures 0.3.21",
+ "hash-db",
+ "libsecp256k1 0.6.0",
+ "log",
+ "parity-scale-codec",
+ "parking_lot 0.11.2",
+ "sp-runtime-interface",
+ "sp-state-machine",
+ "sp-std",
+ "sp-tracing",
+ "sp-trie",
+ "sp-wasm-interface",
+ "tracing",
+ "tracing-core",
+]
+
+[[package]]
+name = "cessp-keystore"
+version = "0.10.0-dev"
+dependencies = [
+ "async-trait",
+ "cessp-core",
+ "cessp-externalities",
+ "derive_more",
+ "futures 0.3.21",
+ "merlin",
+ "parity-scale-codec",
+ "parking_lot 0.11.2",
+ "rand 0.7.3",
+ "rand_chacha 0.2.2",
+ "schnorrkel",
+ "serde",
 ]
 
 [[package]]
@@ -4132,6 +4195,7 @@ name = "pallet-cess-bounties"
 version = "4.0.0-dev"
 dependencies = [
  "cessp-core",
+ "cessp-io",
  "frame-benchmarking",
  "frame-support",
  "frame-system",
@@ -4140,7 +4204,6 @@ dependencies = [
  "pallet-treasury",
  "parity-scale-codec",
  "scale-info",
- "sp-io",
  "sp-runtime",
  "sp-std",
 ]
@@ -4152,6 +4215,7 @@ dependencies = [
  "cessp-consensus-rrsc",
  "cessp-consensus-vrf",
  "cessp-core",
+ "cessp-io",
  "frame-benchmarking",
  "frame-election-provider-support",
  "frame-support",
@@ -4167,7 +4231,6 @@ dependencies = [
  "parity-scale-codec",
  "scale-info",
  "sp-application-crypto",
- "sp-io",
  "sp-runtime",
  "sp-session",
  "sp-staking",
@@ -5821,6 +5884,7 @@ dependencies = [
  "cessp-consensus-slots",
  "cessp-consensus-vrf",
  "cessp-core",
+ "cessp-io",
  "derive_more",
  "fork-tree",
  "futures 0.3.21",
@@ -5849,7 +5913,6 @@ dependencies = [
  "sp-block-builder",
  "sp-blockchain",
  "sp-inherents",
- "sp-io",
  "sp-keystore",
  "sp-runtime",
  "sp-timestamp",

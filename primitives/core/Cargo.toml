@@ -41,7 +41,7 @@ secrecy = { version = "0.7.0", default-features = false }
 lazy_static = { version = "1.4.0", default-features = false, optional = true }
 parking_lot = { version = "0.11.1", optional = true }
 sp-debug-derive = { version = "3.0.0", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
-sp-externalities = { version = "0.10.0-dev", optional = true, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-externalities = { version = "0.10.0-dev", optional = true, path = "../externalities" }
 sp-storage = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 parity-util-mem = { version = "0.10.0", default-features = false, features = [
 	"primitive-types",
@@ -118,7 +118,7 @@ std = [
 	"num-traits/std",
 	"tiny-keccak",
 	"sp-debug-derive/std",
-	"sp-externalities",
+	"cessp-externalities",
 	"sp-storage/std",
 	"sp-runtime-interface/std",
 	"zeroize/alloc",

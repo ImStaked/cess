@@ -35,7 +35,7 @@ use sp_std::vec::Vec;
 use tracing;
 
 #[cfg(feature = "std")]
-use sp_core::{
+use cessp_core::{
 	crypto::Pair,
 	hexdisplay::HexDisplay,
 	offchain::{OffchainDbExt, OffchainWorkerExt, TransactionPoolExt},
@@ -43,9 +43,9 @@ use sp_core::{
 	traits::{RuntimeSpawnExt, TaskExecutorExt},
 };
 #[cfg(feature = "std")]
-use sp_keystore::{KeystoreExt, SyncCryptoStore};
+use cessp_keystore::{KeystoreExt, SyncCryptoStore};
 
-use sp_core::{
+use cessp_core::{
 	crypto::KeyTypeId,
 	ecdsa, ed25519,
 	offchain::{
@@ -57,7 +57,7 @@ use sp_core::{
 #[cfg(feature = "std")]
 use sp_trie::{trie_types::Layout, TrieConfiguration};
 
-use sp_runtime_interface::{
+use cessp_runtime_interface::{
 	pass_by::{PassBy, PassByCodec},
 	runtime_interface, Pointer,
 };
@@ -65,7 +65,7 @@ use sp_runtime_interface::{
 use codec::{Decode, Encode};
 
 #[cfg(feature = "std")]
-use sp_externalities::{Externalities, ExternalitiesExt};
+use cessp_externalities::{Externalities, ExternalitiesExt};
 
 #[cfg(feature = "std")]
 mod batch_verifier;
@@ -397,27 +397,27 @@ pub trait DefaultChildStorage {
 pub trait Trie {
 	/// A trie root formed from the iterated items.
 	fn blake2_256_root(input: Vec<(Vec<u8>, Vec<u8>)>) -> H256 {
-		Layout::<sp_core::Blake2Hasher>::trie_root(input)
+		Layout::<cessp_core::Blake2Hasher>::trie_root(input)
 	}
 
 	/// A trie root formed from the enumerated items.
 	fn blake2_256_ordered_root(input: Vec<Vec<u8>>) -> H256 {
-		Layout::<sp_core::Blake2Hasher>::ordered_trie_root(input)
+		Layout::<cessp_core::Blake2Hasher>::ordered_trie_root(input)
 	}
 
 	/// A trie root formed from the iterated items.
 	fn keccak_256_root(input: Vec<(Vec<u8>, Vec<u8>)>) -> H256 {
-		Layout::<sp_core::KeccakHasher>::trie_root(input)
+		Layout::<cessp_core::KeccakHasher>::trie_root(input)
 	}
 
 	/// A trie root formed from the enumerated items.
 	fn keccak_256_ordered_root(input: Vec<Vec<u8>>) -> H256 {
-		Layout::<sp_core::KeccakHasher>::ordered_trie_root(input)
+		Layout::<cessp_core::KeccakHasher>::ordered_trie_root(input)
 	}
 
 	/// Verify trie proof
 	fn blake2_256_verify_proof(root: H256, proof: &[Vec<u8>], key: &[u8], value: &[u8]) -> bool {
-		sp_trie::verify_trie_proof::<Layout<sp_core::Blake2Hasher>, _, _, _>(
+		sp_trie::verify_trie_proof::<Layout<cessp_core::Blake2Hasher>, _, _, _>(
 			&root,
 			proof,
 			&[(key, Some(value))],
@@ -427,7 +427,7 @@ pub trait Trie {
 
 	/// Verify trie proof
 	fn keccak_256_verify_proof(root: H256, proof: &[Vec<u8>], key: &[u8], value: &[u8]) -> bool {
-		sp_trie::verify_trie_proof::<Layout<sp_core::KeccakHasher>, _, _, _>(
+		sp_trie::verify_trie_proof::<Layout<cessp_core::KeccakHasher>, _, _, _>(
 			&root,
 			proof,
 			&[(key, Some(value))],
@@ -476,7 +476,7 @@ pub trait Misc {
 	///
 	/// Calling into the runtime may be incredible expensive and should be approached with care.
 	fn runtime_version(&mut self, wasm: &[u8]) -> Option<Vec<u8>> {
-		use sp_core::traits::ReadRuntimeVersionExt;
+		use cessp_core::traits::ReadRuntimeVersionExt;
 
 		let mut ext = sp_state_machine::BasicExternalities::default();
 
@@ -848,42 +848,42 @@ pub trait Crypto {
 pub trait Hashing {
 	/// Conduct a 256-bit Keccak hash.
 	fn keccak_256(data: &[u8]) -> [u8; 32] {
-		sp_core::hashing::keccak_256(data)
+		cessp_core::hashing::keccak_256(data)
 	}
 
 	/// Conduct a 512-bit Keccak hash.
 	fn keccak_512(data: &[u8]) -> [u8; 64] {
-		sp_core::hashing::keccak_512(data)
+		cessp_core::hashing::keccak_512(data)
 	}
 
 	/// Conduct a 256-bit Sha2 hash.
 	fn sha2_256(data: &[u8]) -> [u8; 32] {
-		sp_core::hashing::sha2_256(data)
+		cessp_core::hashing::sha2_256(data)
 	}
 
 	/// Conduct a 128-bit Blake2 hash.
 	fn blake2_128(data: &[u8]) -> [u8; 16] {
-		sp_core::hashing::blake2_128(data)
+		cessp_core::hashing::blake2_128(data)
 	}
 
 	/// Conduct a 256-bit Blake2 hash.
 	fn blake2_256(data: &[u8]) -> [u8; 32] {
-		sp_core::hashing::blake2_256(data)
+		cessp_core::hashing::blake2_256(data)
 	}
 
 	/// Conduct four XX hashes to give a 256-bit result.
 	fn twox_256(data: &[u8]) -> [u8; 32] {
-		sp_core::hashing::twox_256(data)
+		cessp_core::hashing::twox_256(data)
 	}
 
 	/// Conduct two XX hashes to give a 128-bit result.
 	fn twox_128(data: &[u8]) -> [u8; 16] {
-		sp_core::hashing::twox_128(data)
+		cessp_core::hashing::twox_128(data)
 	}
 
 	/// Conduct two XX hashes to give a 64-bit result.
 	fn twox_64(data: &[u8]) -> [u8; 8] {
-		sp_core::hashing::twox_64(data)
+		cessp_core::hashing::twox_64(data)
 	}
 }
 
@@ -916,7 +916,7 @@ pub trait OffchainIndex {
 }
 
 #[cfg(feature = "std")]
-sp_externalities::decl_extension! {
+cessp_externalities::decl_extension! {
 	/// Batch verification extension to register/retrieve from the externalities.
 	pub struct VerificationExt(BatchVerifier);
 }
@@ -1183,7 +1183,7 @@ pub trait Logging {
 pub struct Crossing<T: Encode + Decode>(T);
 
 impl<T: Encode + Decode> PassBy for Crossing<T> {
-	type PassBy = sp_runtime_interface::pass_by::Codec<Self>;
+	type PassBy = cessp_runtime_interface::pass_by::Codec<Self>;
 }
 
 impl<T: Encode + Decode> Crossing<T> {
@@ -1430,7 +1430,7 @@ pub trait RuntimeTasks {
 	///
 	/// This should not be used directly. Use `sp_tasks::spawn` instead.
 	fn spawn(dispatcher_ref: u32, entry: u32, payload: Vec<u8>) -> u64 {
-		sp_externalities::with_externalities(|mut ext| {
+		cessp_externalities::with_externalities(|mut ext| {
 			let runtime_spawn = ext
 				.extension::<RuntimeSpawnExt>()
 				.expect("Cannot spawn without dynamic runtime dispatcher (RuntimeSpawnExt)");
@@ -1443,7 +1443,7 @@ pub trait RuntimeTasks {
 	///
 	/// This should not be used directly. Use `join` of `sp_tasks::spawn` result instead.
 	fn join(handle: u64) -> Vec<u8> {
-		sp_externalities::with_externalities(|mut ext| {
+		cessp_externalities::with_externalities(|mut ext| {
 			let runtime_spawn = ext
 				.extension::<RuntimeSpawnExt>()
 				.expect("Cannot join without dynamic runtime dispatcher (RuntimeSpawnExt)");
@@ -1497,7 +1497,7 @@ pub fn oom(_: core::alloc::Layout) -> ! {
 
 /// Type alias for Externalities implementation used in tests.
 #[cfg(feature = "std")]
-pub type TestExternalities = sp_state_machine::TestExternalities<sp_core::Blake2Hasher, u64>;
+pub type TestExternalities = sp_state_machine::TestExternalities<cessp_core::Blake2Hasher, u64>;
 
 /// The host functions Substrate provides for the Wasm runtime environment.
 ///
@@ -1523,7 +1523,7 @@ pub type SubstrateHostFunctions = (
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use sp_core::{map, storage::Storage, testing::TaskExecutor, traits::TaskExecutorExt};
+	use cessp_core::{map, storage::Storage, testing::TaskExecutor, traits::TaskExecutorExt};
 	use sp_state_machine::BasicExternalities;
 	use std::any::TypeId;
 

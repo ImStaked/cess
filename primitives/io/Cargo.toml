@@ -23,7 +23,7 @@ sp-std = { version = "4.0.0-dev", default-features = false, git = "https://githu
 libsecp256k1 = { version = "0.6", optional = true }
 sp-state-machine = { version = "0.10.0-dev", optional = true, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10'  }
 sp-wasm-interface = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10', default-features = false }
-sp-runtime-interface = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-runtime-interface = { version = "4.0.0-dev", default-features = false, path = "../runtime-interface" }
 sp-trie = { version = "4.0.0-dev", optional = true, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 cessp-externalities = { version = "0.10.0-dev", optional = true, path = "../externalities" }
 sp-tracing = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
@@ -44,7 +44,7 @@ std = [
 	"sp-trie",
 	"sp-state-machine",
 	"libsecp256k1",
-	"sp-runtime-interface/std",
+	"cessp-runtime-interface/std",
 	"cessp-externalities",
 	"sp-wasm-interface/std",
 	"sp-tracing/std",

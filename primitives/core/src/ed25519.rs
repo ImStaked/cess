@@ -41,7 +41,7 @@ use core::convert::TryFrom;
 use ed25519_dalek::{Signer as _, Verifier as _};
 #[cfg(feature = "std")]
 use serde::{de, Deserialize, Deserializer, Serialize, Serializer};
-use sp_runtime_interface::pass_by::PassByInner;
+use cessp_runtime_interface::pass_by::PassByInner;
 use sp_std::ops::Deref;
 #[cfg(feature = "std")]
 use substrate_bip39::seed_from_entropy;

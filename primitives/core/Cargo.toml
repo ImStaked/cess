@@ -67,7 +67,7 @@ twox-hash = { version = "1.5.0", default-features = false, optional = true }
 libsecp256k1 = { version = "0.6", default-features = false, features = ["hmac", "static-context"], optional = true }
 merlin = { version = "2.0", default-features = false, optional = true }
 
-sp-runtime-interface = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-runtime-interface = { version = "4.0.0-dev", default-features = false, path = "../runtime-interface" }
 
 [dev-dependencies]
 sp-serializer = { version = "3.0.0", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
@@ -120,7 +120,7 @@ std = [
 	"sp-debug-derive/std",
 	"cessp-externalities",
 	"sp-storage/std",
-	"sp-runtime-interface/std",
+	"cessp-runtime-interface/std",
 	"zeroize/alloc",
 	"secrecy/alloc",
 	"futures",
@@ -141,6 +141,6 @@ full_crypto = [
 	"sha2",
 	"twox-hash",
 	"libsecp256k1",
-	"sp-runtime-interface/disable_target_static_assertions",
+	"cessp-runtime-interface/disable_target_static_assertions",
 	"merlin",
 ]

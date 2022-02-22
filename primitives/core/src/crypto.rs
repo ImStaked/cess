@@ -37,7 +37,7 @@ pub use secrecy::ExposeSecret;
 /// A store for sensitive data.
 #[cfg(feature = "std")]
 pub use secrecy::SecretString;
-use sp_runtime_interface::pass_by::PassByInner;
+use cessp_runtime_interface::pass_by::PassByInner;
 #[cfg(feature = "std")]
 use sp_std::convert::TryInto;
 #[doc(hidden)]

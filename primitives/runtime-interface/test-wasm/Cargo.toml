@@ -1,0 +1,26 @@
+[package]
+name = "cessp-runtime-interface-test-wasm"
+version = "2.0.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+build = "build.rs"
+license = "Apache-2.0"
+homepage = "https://substrate.dev"
+repository = "https://github.com/paritytech/substrate/"
+publish = false
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+cessp-runtime-interface = { version = "4.0.0-dev", default-features = false, path = "../" }
+sp-std = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-io = { version = "4.0.0-dev", default-features = false, path = "../../io" }
+cessp-core = { version = "4.0.0-dev", default-features = false, path = "../../core" }
+
+[build-dependencies]
+substrate-wasm-builder = { version = "5.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+
+[features]
+default = [ "std" ]
+std = [ "cessp-runtime-interface/std", "sp-std/std", "cessp-core/std", "cessp-io/std" ]

@@ -10,10 +10,10 @@ use serde::{Deserialize, Serialize};
 use sp_api::{BlockId, ProvideRuntimeApi};
 use sp_application_crypto::AppKey;
 use sp_blockchain::{Error as BlockChainError, HeaderBackend, HeaderMetadata};
-use sp_consensus::{Error as ConsensusError, SelectChain};
-use sp_consensus_rrsc::{digests::PreDigest, AuthorityId, RRSCApi as RRSCRuntimeApi};
-use sp_core::crypto::Public;
-use sp_keystore::{SyncCryptoStore, SyncCryptoStorePtr};
+use cessp_consensus::{Error as ConsensusError, SelectChain};
+use cessp_consensus_rrsc::{digests::PreDigest, AuthorityId, RRSCApi as RRSCRuntimeApi};
+use cessp_core::crypto::Public;
+use cessp_keystore::{SyncCryptoStore, SyncCryptoStorePtr};
 use sp_runtime::traits::{Block as BlockT, Header as _};
 use std::{collections::HashMap, sync::Arc};
 
@@ -198,16 +198,16 @@ mod tests {
 	use super::*;
 	use sc_keystore::LocalKeystore;
 	use sp_application_crypto::AppPair;
-	use sp_core::crypto::key_types::RRSC;
+	use cessp_core::crypto::key_types::RRSC;
 	use sp_keyring::Sr25519Keyring;
-	use sp_keystore::{SyncCryptoStore, SyncCryptoStorePtr};
+	use cessp_keystore::{SyncCryptoStore, SyncCryptoStorePtr};
 	use substrate_test_runtime_client::{
 		runtime::Block, Backend, DefaultTestClientBuilderExt, TestClient, TestClientBuilder,
 		TestClientBuilderExt,
 	};
 
 	use jsonrpc_core::IoHandler;
-	use sc_consensus_rrsc::{block_import, AuthorityPair, Config};
+	use cessc_consensus_rrsc::{block_import, AuthorityPair, Config};
 	use std::sync::Arc;
 
 	/// creates keystore backed by a temp file

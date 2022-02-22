@@ -38,7 +38,7 @@ use scale_info::TypeInfo;
 pub use serde;
 #[cfg(feature = "std")]
 use serde::{Deserialize, Serialize};
-use sp_runtime_interface::pass_by::{PassByEnum, PassByInner};
+use cessp_runtime_interface::pass_by::{PassByEnum, PassByInner};
 use sp_std::{ops::Deref, prelude::*};
 #[cfg(feature = "std")]
 use std::borrow::Cow;

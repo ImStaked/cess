@@ -54,7 +54,7 @@ use sp_std::ops::Deref;
 use schnorrkel::keys::{MINI_SECRET_KEY_LENGTH, SECRET_KEY_LENGTH};
 #[cfg(feature = "std")]
 use serde::{de, Deserialize, Deserializer, Serialize, Serializer};
-use sp_runtime_interface::pass_by::PassByInner;
+use cessp_runtime_interface::pass_by::PassByInner;
 
 // signing context
 #[cfg(feature = "full_crypto")]

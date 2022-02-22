@@ -21,7 +21,7 @@
 
 use codec::{Decode, Encode, MaxEncodedLen};
 use scale_info::TypeInfo;
-use sp_runtime_interface::pass_by::PassByInner;
+use cessp_runtime_interface::pass_by::PassByInner;
 use sp_std::cmp::Ordering;
 
 #[cfg(feature = "std")]

@@ -28,7 +28,7 @@ use sp_runtime::{
 	generic::BlockId,
 	traits::{Block as BlockT, DigestFor, HashFor, NumberFor},
 };
-use sp_state_machine::StorageProof;
+use cessp_state_machine::StorageProof;
 
 pub mod block_validation;
 pub mod error;
@@ -38,7 +38,7 @@ mod select_chain;
 pub use self::error::Error;
 pub use select_chain::SelectChain;
 pub use sp_inherents::InherentData;
-pub use sp_state_machine::Backend as StateBackend;
+pub use cessp_state_machine::Backend as StateBackend;
 
 /// Type of keys in the blockchain cache that consensus module could use for its needs.
 pub type CacheKeyId = [u8; 4];
@@ -112,7 +112,7 @@ pub struct Proposal<Block: BlockT, Transaction, Proof> {
 	pub proof: Proof,
 	/// The storage changes while building this block.
 	pub storage_changes:
-		sp_state_machine::StorageChanges<Transaction, HashFor<Block>, NumberFor<Block>>,
+		cessp_state_machine::StorageChanges<Transaction, HashFor<Block>, NumberFor<Block>>,
 }
 
 /// Error that is returned when [`ProofRecording`] requested to record a proof,
@@ -165,7 +165,7 @@ impl ProofRecording for DisableProofRecording {
 pub struct EnableProofRecording;
 
 impl ProofRecording for EnableProofRecording {
-	type Proof = sp_state_machine::StorageProof;
+	type Proof = cessp_state_machine::StorageProof;
 	const ENABLED: bool = true;
 
 	fn into_proof(proof: Option<StorageProof>) -> Result<Self::Proof, NoProofRecorded> {

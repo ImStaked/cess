@@ -122,7 +122,7 @@ pub struct BlockCheckParams<Block: BlockT> {
 /// Precomputed storage.
 pub enum StorageChanges<Block: BlockT, Transaction> {
 	/// Changes coming from block execution.
-	Changes(sp_state_machine::StorageChanges<Transaction, HashFor<Block>, NumberFor<Block>>),
+	Changes(cessp_state_machine::StorageChanges<Transaction, HashFor<Block>, NumberFor<Block>>),
 	/// Whole new state.
 	Import(ImportedState<Block>),
 }

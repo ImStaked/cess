@@ -478,7 +478,7 @@ pub trait Misc {
 	fn runtime_version(&mut self, wasm: &[u8]) -> Option<Vec<u8>> {
 		use cessp_core::traits::ReadRuntimeVersionExt;
 
-		let mut ext = sp_state_machine::BasicExternalities::default();
+		let mut ext = cessp_state_machine::BasicExternalities::default();
 
 		match self
 			.extension::<ReadRuntimeVersionExt>()
@@ -1497,7 +1497,7 @@ pub fn oom(_: core::alloc::Layout) -> ! {
 
 /// Type alias for Externalities implementation used in tests.
 #[cfg(feature = "std")]
-pub type TestExternalities = sp_state_machine::TestExternalities<cessp_core::Blake2Hasher, u64>;
+pub type TestExternalities = cessp_state_machine::TestExternalities<cessp_core::Blake2Hasher, u64>;
 
 /// The host functions Substrate provides for the Wasm runtime environment.
 ///
@@ -1524,7 +1524,7 @@ pub type SubstrateHostFunctions = (
 mod tests {
 	use super::*;
 	use cessp_core::{map, storage::Storage, testing::TaskExecutor, traits::TaskExecutorExt};
-	use sp_state_machine::BasicExternalities;
+	use cessp_state_machine::BasicExternalities;
 	use std::any::TypeId;
 
 	#[test]

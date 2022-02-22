@@ -13,12 +13,12 @@ targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
 cessp-runtime-interface = { version = "4.0.0-dev", path = "../" }
-sc-executor = { version = "0.10.0-dev", path = "../../../client/executor" }
-sc-executor-common = { version = "0.10.0-dev", path = "../../../client/executor/common" }
+sc-executor = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-executor-common = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 cessp-runtime-interface-test-wasm = { version = "2.0.0", path = "../test-wasm" }
 cessp-runtime-interface-test-wasm-deprecated = { version = "2.0.0", path = "../test-wasm-deprecated" }
-sp-state-machine = { version = "0.10.0-dev", path = "../../state-machine" }
-sp-runtime = { version = "4.0.0-dev", path = "../../runtime" }
-sp-io = { version = "4.0.0-dev", path = "../../io" }
+cessp-state-machine = { version = "0.10.0-dev", path = "../../state-machine" }
+sp-runtime = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-io = { version = "4.0.0-dev", path = "../../io" }
 tracing = "0.1.25"
 tracing-core = "0.1.17"

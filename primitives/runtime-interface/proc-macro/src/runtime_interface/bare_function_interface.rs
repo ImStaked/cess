@@ -165,7 +165,7 @@ fn function_std_impl(
 		call_to_trait
 	} else {
 		parse_quote!(
-			#crate_::sp_tracing::within_span! { #crate_::sp_tracing::trace_span!(#function_name_str);
+			#crate_::cessp_tracing::within_span! { #crate_::cessp_tracing::trace_span!(#function_name_str);
 				#call_to_trait
 			}
 		)

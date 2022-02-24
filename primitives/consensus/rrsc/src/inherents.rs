@@ -17,9 +17,9 @@
 
 //! Inherents for RRSC
 
-use sp_inherents::{Error, InherentData, InherentIdentifier};
+use cessp_inherents::{Error, InherentData, InherentIdentifier};
 
-use sp_std::result::Result;
+use cessp_std::result::Result;
 
 /// The RRSC inherent identifier.
 pub const INHERENT_IDENTIFIER: InherentIdentifier = *b"rrscslot";
@@ -77,7 +77,7 @@ impl InherentDataProvider {
 }
 
 #[cfg(feature = "std")]
-impl sp_std::ops::Deref for InherentDataProvider {
+impl cessp_std::ops::Deref for InherentDataProvider {
 	type Target = InherentType;
 
 	fn deref(&self) -> &Self::Target {
@@ -87,7 +87,7 @@ impl sp_std::ops::Deref for InherentDataProvider {
 
 #[cfg(feature = "std")]
 #[async_trait::async_trait]
-impl sp_inherents::InherentDataProvider for InherentDataProvider {
+impl cessp_inherents::InherentDataProvider for InherentDataProvider {
 	fn provide_inherent_data(&self, inherent_data: &mut InherentData) -> Result<(), Error> {
 		inherent_data.put_data(INHERENT_IDENTIFIER, &self.slot)
 	}

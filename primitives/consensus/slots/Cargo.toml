@@ -14,13 +14,13 @@ targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false, features = ["derive"] }
-sp-runtime = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-arithmetic = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-runtime = { version = "4.0.0-dev", default-features = false, path = "../../runtime" }
+cessp-arithmetic = { version = "4.0.0-dev", default-features = false, path = "../../arithmetic" }
 
 [features]
 default = ["std"]
 std = [
 	"codec/std",
-	"sp-runtime/std",
-	"sp-arithmetic/std",
+	"cessp-runtime/std",
+	"cessp-arithmetic/std",
 ]

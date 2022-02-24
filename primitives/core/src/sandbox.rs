@@ -18,7 +18,7 @@
 //! Definition of a sandbox environment.
 
 use codec::{Decode, Encode};
-use sp_std::vec::Vec;
+use cessp_std::vec::Vec;
 
 /// Error error that can be returned from host function.
 #[derive(Encode, Decode, crate::RuntimeDebug)]

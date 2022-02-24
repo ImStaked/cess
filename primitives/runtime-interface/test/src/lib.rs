@@ -31,7 +31,7 @@ use std::{
 	sync::{Arc, Mutex},
 };
 
-type TestExternalities = sp_state_machine::TestExternalities<sp_runtime::traits::BlakeTwo256, u64>;
+type TestExternalities = sp_state_machine::TestExternalities<cessp_runtime::traits::BlakeTwo256, u64>;
 
 fn call_wasm_method_with_result<HF: HostFunctionsT>(
 	binary: &[u8],
@@ -40,7 +40,7 @@ fn call_wasm_method_with_result<HF: HostFunctionsT>(
 	let mut ext = TestExternalities::default();
 	let mut ext_ext = ext.ext();
 	let mut host_functions = HF::host_functions();
-	host_functions.extend(sp_io::SubstrateHostFunctions::host_functions());
+	host_functions.extend(cessp_io::SubstrateHostFunctions::host_functions());
 
 	let executor = sc_executor::WasmExecutor::new(
 		sc_executor::WasmExecutionMethod::Interpreted,

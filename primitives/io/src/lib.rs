@@ -29,7 +29,7 @@
 	doc = "Substrate's runtime standard library as compiled without Rust's standard library."
 )]
 
-use sp_std::vec::Vec;
+use cessp_std::vec::Vec;
 
 #[cfg(feature = "std")]
 use tracing;
@@ -1204,7 +1204,7 @@ where
 }
 
 /// Interface to provide tracing facilities for wasm. Modelled after tokios `tracing`-crate
-/// interfaces. See `sp-tracing` for more information.
+/// interfaces. See `cessp-tracing` for more information.
 #[runtime_interface(wasm_only, no_tracing)]
 pub trait WasmTracing {
 	/// Whether the span described in `WasmMetadata` should be traced wasm-side
@@ -1216,7 +1216,7 @@ pub trait WasmTracing {
 	/// checked more than once per metadata. This exists for optimisation purposes but is still not
 	/// cheap as it will jump the wasm-native-barrier every time it is called. So an implementation
 	/// might chose to cache the result for the execution of the entire block.
-	fn enabled(&mut self, metadata: Crossing<sp_tracing::WasmMetadata>) -> bool {
+	fn enabled(&mut self, metadata: Crossing<cessp_tracing::WasmMetadata>) -> bool {
 		let metadata: &tracing_core::metadata::Metadata<'static> = (&metadata.into_inner()).into();
 		tracing::dispatcher::get_default(|d| d.enabled(metadata))
 	}
@@ -1227,7 +1227,7 @@ pub trait WasmTracing {
 	/// and then calls `clone_span` with the ID to signal that we are keeping it around on the wasm-
 	/// side even after the local span is dropped. The resulting ID is then handed over to the wasm-
 	/// side.
-	fn enter_span(&mut self, span: Crossing<sp_tracing::WasmEntryAttributes>) -> u64 {
+	fn enter_span(&mut self, span: Crossing<cessp_tracing::WasmEntryAttributes>) -> u64 {
 		let span: tracing::Span = span.into_inner().into();
 		match span.id() {
 			Some(id) => tracing::dispatcher::get_default(|d| {
@@ -1242,7 +1242,7 @@ pub trait WasmTracing {
 	}
 
 	/// Emit the given event to the global tracer on the native side
-	fn event(&mut self, event: Crossing<sp_tracing::WasmEntryAttributes>) {
+	fn event(&mut self, event: Crossing<cessp_tracing::WasmEntryAttributes>) {
 		event.into_inner().emit();
 	}
 
@@ -1300,7 +1300,7 @@ mod tracing_setup {
 		}
 	}
 
-	/// Initialize tracing of sp_tracing on wasm with `with-tracing` enabled.
+	/// Initialize tracing of cessp_tracing on wasm with `with-tracing` enabled.
 	/// Can be called multiple times from within the same process and will only
 	/// set the global bridging subscriber once.
 	pub fn init_tracing() {
@@ -1314,7 +1314,7 @@ mod tracing_setup {
 
 #[cfg(not(all(not(feature = "std"), feature = "with-tracing")))]
 mod tracing_setup {
-	/// Initialize tracing of sp_tracing not necessary – noop. To enable build
+	/// Initialize tracing of cessp_tracing not necessary – noop. To enable build
 	/// without std and with the `with-tracing`-feature.
 	pub fn init_tracing() {}
 }
@@ -1482,7 +1482,7 @@ mod allocator_impl {
 #[panic_handler]
 #[no_mangle]
 pub fn panic(info: &core::panic::PanicInfo) -> ! {
-	let message = sp_std::alloc::format!("{}", info);
+	let message = cessp_std::alloc::format!("{}", info);
 	logging::log(LogLevel::Error, "runtime", message.as_bytes());
 	core::arch::wasm32::unreachable();
 }

@@ -18,15 +18,15 @@ codec = { package = "parity-scale-codec", version = "2.0.0", features = [
 cessp-consensus-rrsc = { version = "0.10.0-dev", path = "../../../primitives/consensus/rrsc" }
 cessc-consensus = { version = "0.10.0-dev", path = "../common" }
 cessp-core = { version = "4.0.0-dev", path = "../../../primitives/core" }
-sp-application-crypto = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
-sp-keystore = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-application-crypto = { version = "4.0.0-dev", path = "../../../primitives/application-crypto" }
+cessp-keystore = { version = "0.10.0-dev", path = "../../../primitives/keystore" }
 num-bigint = "0.2.3"
 num-rational = "0.2.2"
 num-traits = "0.2.8"
 serde = { version = "1.0.126", features = ["derive"] }
-sp-version = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-version = { version = "4.0.0-dev", path = "../../../primitives/version" }
 cessp-io = { version = "4.0.0-dev", path = "../../../primitives/io" }
-sp-inherents = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-inherents = { version = "4.0.0-dev", path = "../../../primitives/inherents" }
 sc-telemetry = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 sc-keystore = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 sc-client-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
@@ -38,7 +38,7 @@ cessp-consensus = { version = "0.10.0-dev", path = "../../../primitives/consensu
 cessp-consensus-slots = { version = "0.10.0-dev", path = "../../../primitives/consensus/slots" }
 cessp-consensus-vrf = { version = "0.10.0-dev", path = "../../../primitives/consensus/vrf" }
 sc-consensus-slots = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
-sp-runtime = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-runtime = { version = "4.0.0-dev", path = "../../../primitives/runtime" }
 fork-tree = { version = "3.0.0", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 prometheus-endpoint = { package = "substrate-prometheus-endpoint", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10', version = "0.9.0" }
 futures = "0.3.9"
@@ -53,10 +53,10 @@ async-trait = "0.1.50"
 
 [dev-dependencies]
 sp-timestamp = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
-sp-tracing = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-tracing = { version = "4.0.0-dev", path = "../../../primitives/tracing" }
 sc-network = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 sc-network-test = { version = "0.8.0", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
-substrate-test-runtime-client = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cess-substrate-test-runtime-client = { version = "2.0.0", path = "../../../test-utils/runtime/client" }
 sc-block-builder = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 rand_chacha = "0.2.2"
 tempfile = "3.1.0"

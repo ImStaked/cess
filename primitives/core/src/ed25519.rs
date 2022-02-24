@@ -20,7 +20,7 @@
 // end::description[]
 
 #[cfg(feature = "full_crypto")]
-use sp_std::vec::Vec;
+use cessp_std::vec::Vec;
 
 use crate::hash::{H256, H512};
 use codec::{Decode, Encode, MaxEncodedLen};
@@ -42,7 +42,7 @@ use ed25519_dalek::{Signer as _, Verifier as _};
 #[cfg(feature = "std")]
 use serde::{de, Deserialize, Deserializer, Serialize, Serializer};
 use cessp_runtime_interface::pass_by::PassByInner;
-use sp_std::ops::Deref;
+use cessp_std::ops::Deref;
 #[cfg(feature = "std")]
 use substrate_bip39::seed_from_entropy;
 
@@ -114,7 +114,7 @@ impl Deref for Public {
 	}
 }
 
-impl sp_std::convert::TryFrom<&[u8]> for Public {
+impl cessp_std::convert::TryFrom<&[u8]> for Public {
 	type Error = ();
 
 	fn try_from(data: &[u8]) -> Result<Self, Self::Error> {
@@ -175,15 +175,15 @@ impl std::fmt::Display for Public {
 	}
 }
 
-impl sp_std::fmt::Debug for Public {
+impl cessp_std::fmt::Debug for Public {
 	#[cfg(feature = "std")]
-	fn fmt(&self, f: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, f: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		let s = self.to_ss58check();
 		write!(f, "{} ({}...)", crate::hexdisplay::HexDisplay::from(&self.0), &s[0..8])
 	}
 
 	#[cfg(not(feature = "std"))]
-	fn fmt(&self, _: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, _: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		Ok(())
 	}
 }
@@ -213,7 +213,7 @@ impl<'de> Deserialize<'de> for Public {
 #[derive(Encode, Decode, PassByInner, TypeInfo)]
 pub struct Signature(pub [u8; 64]);
 
-impl sp_std::convert::TryFrom<&[u8]> for Signature {
+impl cessp_std::convert::TryFrom<&[u8]> for Signature {
 	type Error = ();
 
 	fn try_from(data: &[u8]) -> Result<Self, Self::Error> {
@@ -302,22 +302,22 @@ impl AsMut<[u8]> for Signature {
 	}
 }
 
-impl sp_std::fmt::Debug for Signature {
+impl cessp_std::fmt::Debug for Signature {
 	#[cfg(feature = "std")]
-	fn fmt(&self, f: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, f: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		write!(f, "{}", crate::hexdisplay::HexDisplay::from(&self.0))
 	}
 
 	#[cfg(not(feature = "std"))]
-	fn fmt(&self, _: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, _: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		Ok(())
 	}
 }
 
 #[cfg(feature = "full_crypto")]
-impl sp_std::hash::Hash for Signature {
-	fn hash<H: sp_std::hash::Hasher>(&self, state: &mut H) {
-		sp_std::hash::Hash::hash(&self.0[..], state);
+impl cessp_std::hash::Hash for Signature {
+	fn hash<H: cessp_std::hash::Hasher>(&self, state: &mut H) {
+		cessp_std::hash::Hash::hash(&self.0[..], state);
 	}
 }
 

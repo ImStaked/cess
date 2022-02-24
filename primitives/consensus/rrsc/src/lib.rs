@@ -34,8 +34,8 @@ use codec::{Decode, Encode};
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "std")]
 use sp_keystore::vrf::{VRFTranscriptData, VRFTranscriptValue};
-use sp_runtime::{traits::Header, ConsensusEngineId, RuntimeDebug};
-use sp_std::vec::Vec;
+use cessp_runtime::{traits::Header, ConsensusEngineId, RuntimeDebug};
+use cessp_std::vec::Vec;
 
 use crate::digests::{NextConfigDescriptor, NextEpochDescriptor};
 
@@ -46,7 +46,7 @@ use crate::digests::{NextConfigDescriptor, NextEpochDescriptor};
 pub const KEY_TYPE: cessp_core::crypto::KeyTypeId = cessp_application_crypto::key_types::RRSC;
 
 mod app {
-	use sp_application_crypto::{app_crypto, key_types::RRSC, sr25519};
+	use cessp_application_crypto::{app_crypto, key_types::RRSC, sr25519};
 	app_crypto!(sr25519, RRSC);
 }
 
@@ -272,7 +272,7 @@ where
 	H: Header,
 {
 	use digests::*;
-	use sp_application_crypto::RuntimeAppPublic;
+	use cessp_application_crypto::RuntimeAppPublic;
 
 	let find_pre_digest =
 		|header: &H| header.digest().logs().iter().find_map(|log| log.as_rrsc_pre_digest());

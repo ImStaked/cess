@@ -8,7 +8,7 @@ use sc_finality_grandpa::{self as grandpa, SharedVoterState};
 use sc_keystore::LocalKeystore;
 use sc_service::{error::Error as ServiceError, Configuration, TaskManager};
 use sc_telemetry::{Telemetry, TelemetryWorker};
-use sp_runtime::traits::Block as BlockT;
+use cessp_runtime::traits::Block as BlockT;
 use std::{sync::Arc, time::Duration};
 
 // Our native executor instance.

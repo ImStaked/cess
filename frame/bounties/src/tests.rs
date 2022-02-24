@@ -28,8 +28,8 @@ use frame_support::{
 	weights::Weight, PalletId,
 };
 
-use sp_core::H256;
-use sp_runtime::{
+use cessp_core::H256;
+use cessp_runtime::{
 	testing::Header,
 	traits::{BadOrigin, BlakeTwo256, IdentityLookup},
 	Perbill, Storage,
@@ -150,7 +150,7 @@ impl Config for Test {
 
 type TreasuryError = pallet_treasury::Error<Test>;
 
-pub fn new_test_ext() -> sp_io::TestExternalities {
+pub fn new_test_ext() -> cessp_io::TestExternalities {
 	let mut t = frame_system::GenesisConfig::default().build_storage::<Test>().unwrap();
 	pallet_balances::GenesisConfig::<Test> {
 		// Total issuance will be 200 with treasury account initialized at ED.
@@ -363,7 +363,7 @@ fn inexistent_account_works() {
 		.assimilate_storage(&mut t)
 		.unwrap();
 	// Treasury genesis config is not build thus treasury account does not exist
-	let mut t: sp_io::TestExternalities = t.into();
+	let mut t: cessp_io::TestExternalities = t.into();
 
 	t.execute_with(|| {
 		assert_eq!(Balances::free_balance(Treasury::account_id()), 0); // Account does not exist
@@ -963,7 +963,7 @@ fn test_migration_v4() {
 
 	s.top = data.into_iter().collect();
 
-	sp_io::TestExternalities::new(s).execute_with(|| {
+	cessp_io::TestExternalities::new(s).execute_with(|| {
 		use frame_support::traits::PalletInfo;
 		let old_pallet_name = <Test as frame_system::Config>::PalletInfo::name::<Bounties>()
 			.expect("Bounties is part of runtime, so it has a name; qed");
@@ -989,7 +989,7 @@ fn genesis_funding_works() {
 	.assimilate_storage(&mut t)
 	.unwrap();
 	GenesisBuild::<Test>::assimilate_storage(&pallet_treasury::GenesisConfig, &mut t).unwrap();
-	let mut t: sp_io::TestExternalities = t.into();
+	let mut t: cessp_io::TestExternalities = t.into();
 
 	t.execute_with(|| {
 		assert_eq!(Balances::free_balance(Treasury::account_id()), initial_funding);

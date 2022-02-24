@@ -14,7 +14,7 @@ targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
 cessp-runtime-interface = { version = "4.0.0-dev", default-features = false, path = "../" }
-sp-std = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-std = { version = "4.0.0-dev", default-features = false, path = "../../std" }
 cessp-io = { version = "4.0.0-dev", default-features = false, path = "../../io" }
 cessp-core = { version = "4.0.0-dev", default-features = false, path = "../../core" }
 
@@ -23,4 +23,4 @@ substrate-wasm-builder = { version = "5.0.0-dev", git = "https://github.com/pari
 
 [features]
 default = [ "std" ]
-std = [ "cessp-runtime-interface/std", "sp-std/std", "cessp-core/std", "cessp-io/std" ]
+std = [ "cessp-runtime-interface/std", "cessp-std/std", "cessp-core/std", "cessp-io/std" ]

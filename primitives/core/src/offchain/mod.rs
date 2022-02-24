@@ -21,7 +21,7 @@ use crate::{OpaquePeerId, RuntimeDebug};
 use codec::{Decode, Encode};
 use scale_info::TypeInfo;
 use cessp_runtime_interface::pass_by::{PassByCodec, PassByEnum, PassByInner};
-use sp_std::{
+use cessp_std::{
 	convert::TryFrom,
 	prelude::{Box, Vec},
 };

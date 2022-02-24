@@ -22,7 +22,7 @@
 use codec::{Decode, Encode, MaxEncodedLen};
 use scale_info::TypeInfo;
 use cessp_runtime_interface::pass_by::PassByInner;
-use sp_std::cmp::Ordering;
+use cessp_std::cmp::Ordering;
 
 #[cfg(feature = "std")]
 use crate::crypto::Ss58Codec;
@@ -43,7 +43,7 @@ use libsecp256k1::{PublicKey, SecretKey};
 #[cfg(feature = "std")]
 use serde::{de, Deserialize, Deserializer, Serialize, Serializer};
 #[cfg(feature = "full_crypto")]
-use sp_std::vec::Vec;
+use cessp_std::vec::Vec;
 
 /// An identifier used to match public keys against ecdsa keys
 pub const CRYPTO_ID: CryptoTypeId = CryptoTypeId(*b"ecds");
@@ -161,7 +161,7 @@ impl AsMut<[u8]> for Public {
 	}
 }
 
-impl sp_std::convert::TryFrom<&[u8]> for Public {
+impl cessp_std::convert::TryFrom<&[u8]> for Public {
 	type Error = ();
 
 	fn try_from(data: &[u8]) -> Result<Self, Self::Error> {
@@ -193,7 +193,7 @@ impl std::fmt::Display for Public {
 	}
 }
 
-impl sp_std::fmt::Debug for Public {
+impl cessp_std::fmt::Debug for Public {
 	#[cfg(feature = "std")]
 	fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
 		let s = self.to_ss58check();
@@ -201,7 +201,7 @@ impl sp_std::fmt::Debug for Public {
 	}
 
 	#[cfg(not(feature = "std"))]
-	fn fmt(&self, _: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, _: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		Ok(())
 	}
 }
@@ -228,8 +228,8 @@ impl<'de> Deserialize<'de> for Public {
 }
 
 #[cfg(feature = "full_crypto")]
-impl sp_std::hash::Hash for Public {
-	fn hash<H: sp_std::hash::Hasher>(&self, state: &mut H) {
+impl cessp_std::hash::Hash for Public {
+	fn hash<H: cessp_std::hash::Hasher>(&self, state: &mut H) {
 		self.as_ref().hash(state);
 	}
 }
@@ -238,7 +238,7 @@ impl sp_std::hash::Hash for Public {
 #[derive(Encode, Decode, PassByInner, TypeInfo)]
 pub struct Signature(pub [u8; 65]);
 
-impl sp_std::convert::TryFrom<&[u8]> for Signature {
+impl cessp_std::convert::TryFrom<&[u8]> for Signature {
 	type Error = ();
 
 	fn try_from(data: &[u8]) -> Result<Self, Self::Error> {
@@ -321,22 +321,22 @@ impl AsMut<[u8]> for Signature {
 	}
 }
 
-impl sp_std::fmt::Debug for Signature {
+impl cessp_std::fmt::Debug for Signature {
 	#[cfg(feature = "std")]
-	fn fmt(&self, f: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, f: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		write!(f, "{}", crate::hexdisplay::HexDisplay::from(&self.0))
 	}
 
 	#[cfg(not(feature = "std"))]
-	fn fmt(&self, _: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, _: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		Ok(())
 	}
 }
 
 #[cfg(feature = "full_crypto")]
-impl sp_std::hash::Hash for Signature {
-	fn hash<H: sp_std::hash::Hasher>(&self, state: &mut H) {
-		sp_std::hash::Hash::hash(&self.0[..], state);
+impl cessp_std::hash::Hash for Signature {
+	fn hash<H: cessp_std::hash::Hasher>(&self, state: &mut H) {
+		cessp_std::hash::Hash::hash(&self.0[..], state);
 	}
 }
 

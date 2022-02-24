@@ -5,9 +5,9 @@ use frame_benchmarking::{
 	account, benchmarks_instance_pallet, impl_benchmark_test_suite, whitelisted_caller, benchmarks,
 };
 use frame_system::RawOrigin as SystemOrigin;
-use sp_runtime::traits::Bounded;
+use cessp_runtime::traits::Bounded;
 type BalanceOf<T> = <<T as pallet::Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
-use sp_std::convert::TryInto;
+use cessp_std::convert::TryInto;
 use crate::Pallet as Sminer;
 
 fn new_miner<T: Config>() {

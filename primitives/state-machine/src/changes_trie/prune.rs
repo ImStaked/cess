@@ -124,7 +124,7 @@ mod tests {
 	use crate::{backend::insert_into_memory_db, changes_trie::storage::InMemoryStorage};
 	use codec::Encode;
 	use cessp_core::H256;
-	use sp_runtime::traits::BlakeTwo256;
+	use cessp_runtime::traits::BlakeTwo256;
 	use sp_trie::MemoryDB;
 	use std::collections::HashSet;
 

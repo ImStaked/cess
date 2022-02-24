@@ -17,15 +17,15 @@ scale-info = { version = "1.0", default-features = false, features = ["derive"] 
 cessp-application-crypto = { version = "4.0.0-dev", default-features = false, path = "../../application-crypto" }
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
 merlin = { version = "2.0", default-features = false }
-sp-std = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-std = { version = "4.0.0-dev", default-features = false, path = "../../std" }
 sp-api = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 cessp-consensus = { version = "0.10.0-dev", optional = true, path = "../common" }
 cessp-consensus-slots = { version = "0.10.0-dev", default-features = false, path = "../slots" }
 cessp-consensus-vrf = { version = "0.10.0-dev", path = "../vrf", default-features = false }
 cessp-core = { version = "4.0.0-dev", default-features = false, path = "../../core" }
-sp-inherents = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-inherents = { version = "4.0.0-dev", default-features = false, path = "../../inherents" }
 sp-keystore = { version = "0.10.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", optional = true, tag = 'monthly-2021-10' }
-sp-runtime = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-runtime = { version = "4.0.0-dev", default-features = false, path = "../../runtime" }
 sp-timestamp = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", optional = true, tag = 'monthly-2021-10' }
 serde = { version = "1.0.126", features = ["derive"], optional = true }
 async-trait = { version = "0.1.50", optional = true }
@@ -36,15 +36,15 @@ std = [
 	"cessp-application-crypto/std",
 	"codec/std",
 	"merlin/std",
-	"sp-std/std",
+	"cessp-std/std",
 	"sp-api/std",
 	"cessp-consensus",
 	"cessp-consensus-slots/std",
 	"cessp-consensus-vrf/std",
 	"cessp-core/std",
-	"sp-inherents/std",
+	"cessp-inherents/std",
 	"sp-keystore",
-	"sp-runtime/std",
+	"cessp-runtime/std",
 	"serde",
 	"sp-timestamp",
 	"async-trait",

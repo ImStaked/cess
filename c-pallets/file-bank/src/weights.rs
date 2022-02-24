@@ -61,7 +61,7 @@
 #![allow(unused_imports)]
 
 use frame_support::{traits::Get, weights::{Weight, constants::RocksDbWeight}};
-use sp_std::marker::PhantomData;
+use cessp_std::marker::PhantomData;
 
 /// Weight functions needed for pallet_file_bank.
 pub trait WeightInfo {

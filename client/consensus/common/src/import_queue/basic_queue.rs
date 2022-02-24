@@ -24,7 +24,7 @@ use log::{debug, trace};
 use prometheus_endpoint::Registry;
 use sc_utils::mpsc::{tracing_unbounded, TracingUnboundedReceiver, TracingUnboundedSender};
 use cessp_consensus::BlockOrigin;
-use sp_runtime::{
+use cessp_runtime::{
 	traits::{Block as BlockT, Header as HeaderT, NumberFor},
 	Justification, Justifications,
 };

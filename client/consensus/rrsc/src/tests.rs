@@ -22,9 +22,9 @@ use sp_consensus_rrsc::{
 	inherents::InherentDataProvider, make_transcript, make_transcript_data, AllowedSlots,
 	AuthorityPair, Slot,
 };
-use sp_core::crypto::Pair;
+use cessp_core::crypto::Pair;
 use sp_keystore::{vrf::make_transcript as transcript_from_data, SyncCryptoStore};
-use sp_runtime::{
+use cessp_runtime::{
 	generic::DigestItem,
 	traits::{Block as BlockT, DigestFor},
 };
@@ -352,7 +352,7 @@ impl TestNetFactory for RRSCTestNet {
 #[test]
 #[should_panic]
 fn rejects_empty_block() {
-	sp_tracing::try_init_simple();
+	cessp_tracing::try_init_simple();
 	let mut net = RRSCTestNet::new(3);
 	let block_builder = |builder: BlockBuilder<_, _, _>| builder.build().unwrap().block;
 	net.mut_peers(|peer| {
@@ -361,7 +361,7 @@ fn rejects_empty_block() {
 }
 
 fn run_one_test(mutator: impl Fn(&mut TestHeader, Stage) + Send + Sync + 'static) {
-	sp_tracing::try_init_simple();
+	cessp_tracing::try_init_simple();
 	let mutator = Arc::new(mutator) as Mutator;
 
 	MUTATOR.with(|m| *m.borrow_mut() = mutator.clone());
@@ -510,7 +510,7 @@ fn rejects_missing_consensus_digests() {
 
 #[test]
 fn wrong_consensus_engine_id_rejected() {
-	sp_tracing::try_init_simple();
+	cessp_tracing::try_init_simple();
 	let sig = AuthorityPair::generate().0.sign(b"");
 	let bad_seal: Item = DigestItem::Seal([0; 4], sig.to_vec());
 	assert!(bad_seal.as_rrsc_pre_digest().is_none());
@@ -519,14 +519,14 @@ fn wrong_consensus_engine_id_rejected() {
 
 #[test]
 fn malformed_pre_digest_rejected() {
-	sp_tracing::try_init_simple();
+	cessp_tracing::try_init_simple();
 	let bad_seal: Item = DigestItem::Seal(RRSC_ENGINE_ID, [0; 64].to_vec());
 	assert!(bad_seal.as_rrsc_pre_digest().is_none());
 }
 
 #[test]
 fn sig_is_not_pre_digest() {
-	sp_tracing::try_init_simple();
+	cessp_tracing::try_init_simple();
 	let sig = AuthorityPair::generate().0.sign(b"");
 	let bad_seal: Item = DigestItem::Seal(RRSC_ENGINE_ID, sig.to_vec());
 	assert!(bad_seal.as_rrsc_pre_digest().is_none());
@@ -535,7 +535,7 @@ fn sig_is_not_pre_digest() {
 
 #[test]
 fn can_author_block() {
-	sp_tracing::try_init_simple();
+	cessp_tracing::try_init_simple();
 	let keystore_path = tempfile::tempdir().expect("Creates keystore path");
 	let keystore: SyncCryptoStorePtr =
 		Arc::new(LocalKeystore::open(keystore_path.path(), None).expect("Creates keystore"));
@@ -590,7 +590,7 @@ fn propose_and_import_block<Transaction: Send + 'static>(
 	slot: Option<Slot>,
 	proposer_factory: &mut DummyFactory,
 	block_import: &mut BoxBlockImport<TestBlock, Transaction>,
-) -> sp_core::H256 {
+) -> cessp_core::H256 {
 	let mut proposer = futures::executor::block_on(proposer_factory.init(parent)).unwrap();
 
 	let slot = slot.unwrap_or_else(|| {
@@ -598,7 +598,7 @@ fn propose_and_import_block<Transaction: Send + 'static>(
 		parent_pre_digest.slot() + 1
 	});
 
-	let pre_digest = sp_runtime::generic::Digest {
+	let pre_digest = cessp_runtime::generic::Digest {
 		logs: vec![Item::rrsc_pre_digest(PreDigest::SecondaryPlain(SecondaryPlainPreDigest {
 			authority_index: 0,
 			slot,
@@ -847,7 +847,7 @@ fn verify_slots_are_strictly_increasing() {
 
 #[test]
 fn rrsc_transcript_generation_match() {
-	sp_tracing::try_init_simple();
+	cessp_tracing::try_init_simple();
 	let keystore_path = tempfile::tempdir().expect("Creates keystore path");
 	let keystore: SyncCryptoStorePtr =
 		Arc::new(LocalKeystore::open(keystore_path.path(), None).expect("Creates keystore"));

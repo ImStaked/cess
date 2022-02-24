@@ -1,0 +1,38 @@
+[package]
+name = "cess-substrate-test-client"
+version = "2.0.1"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+license = "Apache-2.0"
+homepage = "https://substrate.dev"
+repository = "https://github.com/paritytech/substrate/"
+publish = false
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "2.0.0" }
+futures = "0.3.16"
+hex = "0.4"
+serde = "1.0.126"
+serde_json = "1.0.68"
+sc-client-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-client-db = { version = "0.10.0-dev", features = [
+    "test-helpers",
+], git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-consensus = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-executor = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-light = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-offchain = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-service = { version = "0.10.0-dev", default-features = false, features = [
+    "test-helpers",
+], git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sp-blockchain = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-consensus = { version = "0.10.0-dev", path = "../../primitives/consensus/common" }
+cessp-core = { version = "4.0.0-dev", path = "../../primitives/core" }
+cessp-keystore = { version = "0.10.0-dev", path = "../../primitives/keystore" }
+sp-keyring = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-runtime = { version = "4.0.0-dev", path = "../../primitives/runtime" }
+cessp-state-machine = { version = "0.10.0-dev", path = "../../primitives/state-machine" }
+async-trait = "0.1.50"

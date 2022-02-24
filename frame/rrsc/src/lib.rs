@@ -9,14 +9,14 @@ use frame_support::{
 	},
 	weights::{Pays, Weight},
 };
-use sp_application_crypto::Public;
-use sp_runtime::{
+use cessp_application_crypto::Public;
+use cessp_runtime::{
 	generic::DigestItem,
 	traits::{IsMember, One, SaturatedConversion, Saturating, Zero},
 	ConsensusEngineId, KeyTypeId, Permill,
 };
 use sp_session::{GetSessionNumber, GetValidatorCount};
-use sp_std::prelude::*;
+use cessp_std::prelude::*;
 
 use cessp_consensus_rrsc::{
 	digests::{NextConfigDescriptor, NextEpochDescriptor, PreDigest},
@@ -513,7 +513,7 @@ impl<T: Config> Pallet<T> {
 
 		// Update the start blocks of the previous and new current epoch.
 		<EpochStart<T>>::mutate(|(previous_epoch_start_block, current_epoch_start_block)| {
-			*previous_epoch_start_block = sp_std::mem::take(current_epoch_start_block);
+			*previous_epoch_start_block = cessp_std::mem::take(current_epoch_start_block);
 			*current_epoch_start_block = <frame_system::Pallet<T>>::block_number();
 		});
 
@@ -709,7 +709,7 @@ impl<T: Config> Pallet<T> {
 	/// randomness. Returns the new randomness.
 	fn randomness_change_epoch(next_epoch_index: u64) -> schnorrkel::Randomness {
 		let this_randomness = NextRandomness::<T>::get();
-		let segment_idx: u32 = SegmentIndex::<T>::mutate(|s| sp_std::mem::replace(s, 0));
+		let segment_idx: u32 = SegmentIndex::<T>::mutate(|s| cessp_std::mem::replace(s, 0));
 
 		// overestimate to the segment being full.
 		let rho_size = segment_idx.saturating_add(1) as usize * UNDER_CONSTRUCTION_SEGMENT_LENGTH;
@@ -838,7 +838,7 @@ impl<T: Config> frame_support::traits::Lateness<T::BlockNumber> for Pallet<T> {
 	}
 }
 
-impl<T: Config> sp_runtime::BoundToRuntimeAppPublic for Pallet<T> {
+impl<T: Config> cessp_runtime::BoundToRuntimeAppPublic for Pallet<T> {
 	type Public = AuthorityId;
 }
 
@@ -887,7 +887,7 @@ fn compute_randomness(
 		s.extend_from_slice(&vrf_output[..]);
 	}
 
-	sp_io::hashing::blake2_256(&s)
+	cessp_io::hashing::blake2_256(&s)
 }
 
 pub mod migrations {
@@ -899,7 +899,7 @@ pub mod migrations {
 		fn pallet_prefix() -> &'static str;
 	}
 
-	struct __OldNextEpochConfig<T>(sp_std::marker::PhantomData<T>);
+	struct __OldNextEpochConfig<T>(cessp_std::marker::PhantomData<T>);
 	impl<T: RRSCPalletPrefix> frame_support::traits::StorageInstance for __OldNextEpochConfig<T> {
 		fn pallet_prefix() -> &'static str {
 			T::pallet_prefix()

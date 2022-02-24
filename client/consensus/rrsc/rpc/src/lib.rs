@@ -14,7 +14,7 @@ use cessp_consensus::{Error as ConsensusError, SelectChain};
 use cessp_consensus_rrsc::{digests::PreDigest, AuthorityId, RRSCApi as RRSCRuntimeApi};
 use cessp_core::crypto::Public;
 use cessp_keystore::{SyncCryptoStore, SyncCryptoStorePtr};
-use sp_runtime::traits::{Block as BlockT, Header as _};
+use cessp_runtime::traits::{Block as BlockT, Header as _};
 use std::{collections::HashMap, sync::Arc};
 
 type FutureResult<T> = jsonrpc_core::BoxFuture<Result<T, RpcError>>;

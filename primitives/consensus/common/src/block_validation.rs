@@ -19,7 +19,7 @@
 
 use crate::BlockStatus;
 use futures::FutureExt as _;
-use sp_runtime::{generic::BlockId, traits::Block};
+use cessp_runtime::{generic::BlockId, traits::Block};
 use std::{error::Error, future::Future, pin::Pin, sync::Arc};
 
 /// A type which provides access to chain information.

@@ -120,8 +120,8 @@ pub type DefaultError = String;
 pub struct DefaultError;
 
 #[cfg(not(feature = "std"))]
-impl sp_std::fmt::Display for DefaultError {
-	fn fmt(&self, f: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+impl cessp_std::fmt::Display for DefaultError {
+	fn fmt(&self, f: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		write!(f, "DefaultError")
 	}
 }
@@ -1005,7 +1005,7 @@ mod tests {
 		traits::{CodeExecutor, Externalities, RuntimeCode},
 		NativeOrEncoded, NeverNativeValue,
 	};
-	use sp_runtime::traits::BlakeTwo256;
+	use cessp_runtime::traits::BlakeTwo256;
 	use std::{
 		collections::{BTreeMap, HashMap},
 		panic::UnwindSafe,

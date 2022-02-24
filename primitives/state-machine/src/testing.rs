@@ -308,7 +308,7 @@ mod tests {
 	use super::*;
 	use hex_literal::hex;
 	use cessp_core::{storage::ChildInfo, traits::Externalities, H256};
-	use sp_runtime::traits::BlakeTwo256;
+	use cessp_runtime::traits::BlakeTwo256;
 
 	#[test]
 	fn commit_should_work() {

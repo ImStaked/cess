@@ -22,28 +22,24 @@ tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 optional = true
 
-[dependencies.frame-support]
+[dependencies.cess-frame-support]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../../frame/support"
 version = '4.0.0-dev'
 
-[dependencies.frame-system]
+[dependencies.cess-frame-system]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../../frame/system"
 version = '4.0.0-dev'
 
-[dependencies.sp-io]
+[dependencies.cessp-io]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../../primitives/io"
 version = '4.0.0-dev'
 
-[dependencies.sp-std]
+[dependencies.cessp-std]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../../primitives/std"
 version = '4.0.0-dev'
 
 [dependencies.pallet-balances]
@@ -58,10 +54,9 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.sp-runtime]
+[dependencies.cessp-runtime]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../../primitives/runtime"
 version = '4.0.0-dev'
 
 # local dependencies
@@ -74,13 +69,13 @@ version = '0.1.0'
 default = ["std"]
 std = [
 	"codec/std",
-	"frame-support/std",
-	"frame-system/std",
+	"cess-frame-support/std",
+	"cess-frame-system/std",
 	"scale-info/std",
 	"serde",
-	"sp-io/std",
-	"sp-runtime/std",
-	"sp-std/std",
+	"cessp-io/std",
+	"cessp-runtime/std",
+	"cessp-std/std",
 	"frame-benchmarking/std",
 ]
 runtime-benchmarks = ["frame-benchmarking"] 

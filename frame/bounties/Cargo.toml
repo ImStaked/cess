@@ -17,10 +17,10 @@ codec = { package = "parity-scale-codec", version = "2.0.0", default-features = 
 	"derive",
 ] }
 scale-info = { version = "1.0", default-features = false, features = ["derive"] }
-sp-std = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-runtime = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-frame-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10'}
-frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-std = { version = "4.0.0-dev", default-features = false, path = "../../primitives/std" }
+cessp-runtime = { version = "4.0.0-dev", default-features = false, path = "../../primitives/runtime" }
+cess-frame-support = { version = "4.0.0-dev", default-features = false, path = "../support" }
+cess-frame-system = { version = "4.0.0-dev", default-features = false, path = "../system" }
 pallet-treasury = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 cessp-io = { version = "4.0.0-dev", path = "../../primitives/io", default-features = false }
 cessp-core = { version = "4.0.0-dev", path = "../../primitives/core", default-features = false }
@@ -37,16 +37,16 @@ std = [
 	"cessp-core/std",
 	"cessp-io/std",
 	"scale-info/std",
-	"sp-std/std",
-	"sp-runtime/std",
-	"frame-support/std",
-	"frame-system/std",
+	"cessp-std/std",
+	"cessp-runtime/std",
+	"cess-frame-support/std",
+	"cess-frame-system/std",
 	"pallet-treasury/std",
 	"log/std",
 ]
 runtime-benchmarks = [
 	"frame-benchmarking",
-	"frame-support/runtime-benchmarks",
-	"frame-system/runtime-benchmarks",
+	"cess-frame-support/runtime-benchmarks",
+	"cess-frame-system/runtime-benchmarks",
 ]
-try-runtime = ["frame-support/try-runtime"]
+try-runtime = ["cess-frame-support/try-runtime"]

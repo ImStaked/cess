@@ -5,7 +5,7 @@ use frame_benchmarking::{
 	account, benchmarks_instance_pallet, impl_benchmark_test_suite, whitelisted_caller, benchmarks,
 };
 use frame_system::RawOrigin as SystemOrigin;
-use sp_runtime::traits::Bounded;
+use cessp_runtime::traits::Bounded;
 
 benchmarks! {
 	upload {

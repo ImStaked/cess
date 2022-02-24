@@ -114,10 +114,10 @@ extern crate self as sp_runtime_interface;
 pub use sp_wasm_interface;
 
 #[doc(hidden)]
-pub use sp_tracing;
+pub use cessp_tracing;
 
 #[doc(hidden)]
-pub use sp_std;
+pub use cessp_std;
 
 /// Attribute macro for transforming a trait declaration into a runtime interface.
 ///
@@ -290,7 +290,7 @@ pub use sp_std;
 ///
 /// # Disable tracing
 /// By addding `no_tracing` to the list of options you can prevent the wasm-side interface from
-/// generating the default `sp-tracing`-calls. Note that this is rarely needed but only meant
+/// generating the default `cessp-tracing`-calls. Note that this is rarely needed but only meant
 /// for the case when that would create a circular dependency. You usually _do not_ want to add
 /// this flag, as tracing doesn't cost you anything by default anyways (it is added as a no-op)
 /// but is super useful for debugging later.

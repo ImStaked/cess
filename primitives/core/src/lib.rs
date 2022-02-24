@@ -39,11 +39,11 @@ pub use serde;
 #[cfg(feature = "std")]
 use serde::{Deserialize, Serialize};
 use cessp_runtime_interface::pass_by::{PassByEnum, PassByInner};
-use sp_std::{ops::Deref, prelude::*};
+use cessp_std::{ops::Deref, prelude::*};
 #[cfg(feature = "std")]
 use std::borrow::Cow;
 
-pub use sp_debug_derive::RuntimeDebug;
+pub use cessp_debug_derive::RuntimeDebug;
 
 #[cfg(feature = "std")]
 pub use impl_serde::serialize as bytes;
@@ -89,7 +89,7 @@ pub use hash_db::Hasher;
 pub use sp_storage as storage;
 
 #[doc(hidden)]
-pub use sp_std;
+pub use cessp_std;
 
 /// Context for executing a call into the runtime.
 pub enum ExecutionContext {
@@ -163,7 +163,7 @@ impl codec::WrapperTypeDecode for Bytes {
 }
 
 #[cfg(feature = "std")]
-impl sp_std::str::FromStr for Bytes {
+impl cessp_std::str::FromStr for Bytes {
 	type Err = bytes::FromHexError;
 
 	fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -182,7 +182,7 @@ impl OpaqueMetadata {
 	}
 }
 
-impl sp_std::ops::Deref for OpaqueMetadata {
+impl cessp_std::ops::Deref for OpaqueMetadata {
 	type Target = Vec<u8>;
 
 	fn deref(&self) -> &Self::Target {
@@ -231,8 +231,8 @@ impl<R> From<R> for NativeOrEncoded<R> {
 }
 
 #[cfg(feature = "std")]
-impl<R: codec::Encode> sp_std::fmt::Debug for NativeOrEncoded<R> {
-	fn fmt(&self, f: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+impl<R: codec::Encode> cessp_std::fmt::Debug for NativeOrEncoded<R> {
+	fn fmt(&self, f: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		hexdisplay::HexDisplay::from(&self.as_encoded().as_ref()).fmt(f)
 	}
 }
@@ -301,7 +301,7 @@ pub trait TypeId {
 
 /// A log level matching the one from `log` crate.
 ///
-/// Used internally by `sp_io::logging::log` method.
+/// Used internally by `cessp_io::logging::log` method.
 #[derive(Encode, Decode, PassByEnum, Copy, Clone)]
 pub enum LogLevel {
 	/// `Error` log level.
@@ -418,7 +418,7 @@ pub fn to_substrate_wasm_fn_return_value(value: &impl Encode) -> u64 {
 	// Leak the output vector to avoid it being freed.
 	// This is fine in a WASM context since the heap
 	// will be discarded after the call.
-	sp_std::mem::forget(encoded);
+	cessp_std::mem::forget(encoded);
 
 	res
 }
@@ -437,7 +437,7 @@ pub enum Void {}
 /// # Example
 ///
 /// ```
-/// sp_core::impl_maybe_marker! {
+/// cessp_core::impl_maybe_marker! {
 ///     /// A marker for a type that implements `Debug` when `feature = std`.
 ///     trait MaybeDebug: std::fmt::Debug;
 ///     /// A marker for a type that implements `Debug + Display` when `feature = std`.

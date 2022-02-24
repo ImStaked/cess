@@ -31,7 +31,7 @@ use sp_trie::{empty_child_trie_root, trie_types::Layout};
 #[cfg(feature = "std")]
 use crate::changes_trie::State as ChangesTrieState;
 use crate::{log_error, trace, warn, StorageTransactionCache};
-use sp_std::{
+use cessp_std::{
 	any::{Any, TypeId},
 	boxed::Box,
 	cmp::Ordering,
@@ -108,7 +108,7 @@ where
 	/// Pseudo-unique id used for tracing.
 	pub id: u16,
 	/// Dummy usage of N arg.
-	_phantom: sp_std::marker::PhantomData<N>,
+	_phantom: cessp_std::marker::PhantomData<N>,
 	/// Extensions registered with this instance.
 	#[cfg(feature = "std")]
 	extensions: Option<OverlayedExtensions<'a>>,
@@ -853,7 +853,7 @@ impl<'a> StorageAppend<'a> {
 	pub fn append(&mut self, value: Vec<u8>) {
 		let value = vec![EncodeOpaqueValue(value)];
 
-		let item = sp_std::mem::take(self.0);
+		let item = cessp_std::mem::take(self.0);
 
 		*self.0 = match Vec::<EncodeOpaqueValue>::append_or_new(item, &value) {
 			Ok(item) => item,

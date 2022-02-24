@@ -19,12 +19,12 @@
 
 #![cfg_attr(not(feature = "std"), no_std)]
 
-use sp_runtime_interface::runtime_interface;
+use cessp_runtime_interface::runtime_interface;
 
 #[cfg(not(feature = "std"))]
-use sp_std::{convert::TryFrom, mem, prelude::*};
+use cessp_std::{convert::TryFrom, mem, prelude::*};
 
-use sp_core::{sr25519::Public, wasm_export_functions};
+use cessp_core::{sr25519::Public, wasm_export_functions};
 
 // Include the WASM binary
 #[cfg(feature = "std")]
@@ -134,11 +134,11 @@ pub trait TestApi {
 	}
 }
 
-/// This function is not used, but we require it for the compiler to include `sp-io`.
-/// `sp-io` is required for its panic and oom handler.
+/// This function is not used, but we require it for the compiler to include `cessp-io`.
+/// `cessp-io` is required for its panic and oom handler.
 #[no_mangle]
 pub fn import_sp_io() {
-	sp_io::misc::print_utf8(&[]);
+	cessp_io::misc::print_utf8(&[]);
 }
 
 wasm_export_functions! {
@@ -208,7 +208,7 @@ wasm_export_functions! {
 	fn test_invalid_utf8_data_should_return_an_error() {
 		let data = vec![0, 159, 146, 150];
 		// I'm an evil hacker, trying to hack!
-		let data_str = unsafe { sp_std::str::from_utf8_unchecked(&data) };
+		let data_str = unsafe { cessp_std::str::from_utf8_unchecked(&data) };
 
 		test_api::invalid_utf8_data(data_str);
 	}

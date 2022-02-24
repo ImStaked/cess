@@ -24,8 +24,8 @@ use frame_support::{
 	weights::Weight,
 };
 use frame_system::{EnsureRoot};
-use sp_core::H256;
-use sp_runtime::{
+use cessp_core::H256;
+use cessp_runtime::{
 	testing::Header,
 	traits::{BlakeTwo256, IdentityLookup},
 	Perbill,
@@ -150,7 +150,7 @@ impl Config for Test {
 	type MyRandomness = TestRandomness<Self>;
 }
 
-pub fn new_test_ext() -> sp_io::TestExternalities {
+pub fn new_test_ext() -> cessp_io::TestExternalities {
 	let mut t = frame_system::GenesisConfig::default().build_storage::<Test>().unwrap();
 	pallet_balances::GenesisConfig::<Test> {
 		balances: vec![(1, 100000000000000000), (2, 100), (3, 100), (4, 100), (5, 100)],

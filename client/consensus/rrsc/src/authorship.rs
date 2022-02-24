@@ -256,7 +256,7 @@ mod tests {
 	use super::*;
 	use sc_keystore::LocalKeystore;
 	use sp_consensus_rrsc::{AllowedSlots, AuthorityId, RRSCEpochConfiguration};
-	use sp_core::{crypto::Pair as _, sr25519::Pair};
+	use cessp_core::{crypto::Pair as _, sr25519::Pair};
 	use std::sync::Arc;
 
 	#[test]
@@ -265,7 +265,7 @@ mod tests {
 		let valid_public_key = SyncCryptoStore::sr25519_generate_new(
 			&*keystore,
 			AuthorityId::ID,
-			Some(sp_core::crypto::DEV_PHRASE),
+			Some(cessp_core::crypto::DEV_PHRASE),
 		)
 		.unwrap();
 

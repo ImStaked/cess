@@ -69,9 +69,9 @@ impl ChangesTrieConfiguration {
 	where
 		Number: From<u32>
 			+ PartialEq
-			+ ::sp_std::ops::Rem<Output = Number>
-			+ ::sp_std::ops::Sub<Output = Number>
-			+ ::sp_std::cmp::PartialOrd
+			+ ::cessp_std::ops::Rem<Output = Number>
+			+ ::cessp_std::ops::Sub<Output = Number>
+			+ ::cessp_std::cmp::PartialOrd
 			+ Zero,
 	{
 		block > zero &&
@@ -105,10 +105,10 @@ impl ChangesTrieConfiguration {
 			+ From<u32>
 			+ PartialOrd
 			+ PartialEq
-			+ ::sp_std::ops::Add<Output = Number>
-			+ ::sp_std::ops::Sub<Output = Number>
-			+ ::sp_std::ops::Div<Output = Number>
-			+ ::sp_std::ops::Mul<Output = Number>
+			+ ::cessp_std::ops::Add<Output = Number>
+			+ ::cessp_std::ops::Sub<Output = Number>
+			+ ::cessp_std::ops::Div<Output = Number>
+			+ ::cessp_std::ops::Mul<Output = Number>
 			+ Zero,
 	{
 		if block <= zero {
@@ -146,10 +146,10 @@ impl ChangesTrieConfiguration {
 			+ From<u32>
 			+ PartialOrd
 			+ PartialEq
-			+ ::sp_std::ops::Add<Output = Number>
-			+ ::sp_std::ops::Sub<Output = Number>
-			+ ::sp_std::ops::Div<Output = Number>
-			+ ::sp_std::ops::Mul<Output = Number>,
+			+ ::cessp_std::ops::Add<Output = Number>
+			+ ::cessp_std::ops::Sub<Output = Number>
+			+ ::cessp_std::ops::Div<Output = Number>
+			+ ::cessp_std::ops::Mul<Output = Number>,
 	{
 		if !self.is_digest_build_enabled() {
 			return None
@@ -188,9 +188,9 @@ impl ChangesTrieConfiguration {
 		Number: Clone
 			+ From<u32>
 			+ PartialEq
-			+ ::sp_std::ops::Rem<Output = Number>
-			+ ::sp_std::ops::Sub<Output = Number>
-			+ ::sp_std::cmp::PartialOrd
+			+ ::cessp_std::ops::Rem<Output = Number>
+			+ ::cessp_std::ops::Sub<Output = Number>
+			+ ::cessp_std::cmp::PartialOrd
 			+ Zero,
 	{
 		if !self.is_digest_build_required_at_block(zero.clone(), block.clone()) {

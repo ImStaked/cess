@@ -24,7 +24,7 @@ use hash_db::{self, Hasher, Prefix};
 #[cfg(feature = "std")]
 use parking_lot::RwLock;
 use cessp_core::storage::ChildInfo;
-use sp_std::{boxed::Box, vec::Vec};
+use cessp_std::{boxed::Box, vec::Vec};
 use sp_trie::{
 	empty_child_trie_root, read_child_trie_value, read_trie_value,
 	trie_types::{Layout, TrieDB, TrieError},
@@ -45,7 +45,7 @@ macro_rules! format {
 	};
 }
 
-type Result<V> = sp_std::result::Result<V, crate::DefaultError>;
+type Result<V> = cessp_std::result::Result<V, crate::DefaultError>;
 
 /// Patricia trie-based storage trait.
 pub trait Storage<H: Hasher>: Send + Sync {
@@ -194,7 +194,7 @@ where
 		// The key just after the one given in input, basically `key++0`.
 		// Note: We are sure this is the next key if:
 		// * size of key has no limit (i.e. we can always add 0 to the path),
-		// * and no keys can be inserted between `key` and `key++0` (this is ensured by sp-io).
+		// * and no keys can be inserted between `key` and `key++0` (this is ensured by cessp-io).
 		let mut potential_next_key = Vec::with_capacity(key.len() + 1);
 		potential_next_key.extend_from_slice(key);
 		potential_next_key.push(0);
@@ -357,7 +357,7 @@ where
 		start_at: Option<&[u8]>,
 		allow_missing_nodes: bool,
 	) -> Result<bool> {
-		let mut iter = move |db| -> sp_std::result::Result<bool, Box<TrieError<H::Out>>> {
+		let mut iter = move |db| -> cessp_std::result::Result<bool, Box<TrieError<H::Out>>> {
 			let trie = TrieDB::<H>::new(db, root)?;
 
 			let prefix = prefix.unwrap_or(&[]);

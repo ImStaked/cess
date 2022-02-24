@@ -21,12 +21,12 @@ codec = { package = "parity-scale-codec", version = "2.0.0", features = [
 futures = { version = "0.3.1", features = ["thread-pool"] }
 log = "0.4.8"
 cessp-core = { version = "4.0.0-dev", path = "../../../primitives/core" }
-sp-inherents = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-inherents = { version = "4.0.0-dev", path = "../../inherents" }
 cessp-state-machine = { version = "0.10.0-dev", path = "../../state-machine" }
 futures-timer = "3.0.1"
-sp-std = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-version = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-runtime = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-std = { version = "4.0.0-dev", path = "../../std" }
+cessp-version = { version = "4.0.0-dev", path = '../../version' }
+cessp-runtime = { version = "4.0.0-dev", path = "../../runtime" }
 thiserror = "1.0.21"
 
 [dev-dependencies]

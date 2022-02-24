@@ -1,0 +1,27 @@
+[package]
+name = "cess-substrate-test-runtime-client"
+version = "2.0.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+license = "Apache-2.0"
+homepage = "https://substrate.dev"
+repository = "https://github.com/paritytech/substrate/"
+publish = false
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+sc-light = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-consensus = { version = "0.10.0-dev", path = "../../../primitives/consensus/common" }
+sc-consensus = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-block-builder = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cess-substrate-test-client = { version = "2.0.0", path = "../../client" }
+cessp-core = { version = "4.0.0-dev", path = "../../../primitives/core" }
+cess-substrate-test-runtime = { version = "2.0.0", path = "../../runtime" }
+cessp-runtime = { version = "4.0.0-dev", path = "../../../primitives/runtime" }
+sp-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sp-blockchain = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+codec = { package = "parity-scale-codec", version = "2.0.0" }
+sc-client-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+futures = "0.3.9"

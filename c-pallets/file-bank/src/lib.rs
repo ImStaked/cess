@@ -24,14 +24,14 @@ use frame_support::traits::{Currency, ReservableCurrency, ExistenceRequirement::
 pub use pallet::*;
 mod benchmarking;
 pub mod weights;
-use sp_std::convert::TryInto;
+use cessp_std::convert::TryInto;
 
 use scale_info::TypeInfo;
-use sp_runtime::{
+use cessp_runtime::{
 	RuntimeDebug,
 	traits::AccountIdConversion,
 };
-use sp_std::prelude::*;
+use cessp_std::prelude::*;
 use codec::{Encode, Decode};
 use frame_support::{dispatch::DispatchResult, PalletId};
 pub use weights::WeightInfo;

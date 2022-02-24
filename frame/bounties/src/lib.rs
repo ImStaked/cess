@@ -79,13 +79,13 @@ pub mod migrations;
 mod tests;
 pub mod weights;
 
-use sp_std::prelude::*;
+use cessp_std::prelude::*;
 
 use frame_support::traits::{
 	Currency, ExistenceRequirement::AllowDeath, Get, Imbalance, OnUnbalanced, ReservableCurrency,
 };
 
-use sp_runtime::{
+use cessp_runtime::{
 	traits::{AccountIdConversion, BadOrigin, Saturating, StaticLookup, Zero},
 	DispatchResult, Permill, RuntimeDebug,
 };

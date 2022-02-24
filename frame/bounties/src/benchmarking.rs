@@ -23,7 +23,7 @@ use super::*;
 
 use frame_benchmarking::{account, benchmarks, impl_benchmark_test_suite, whitelisted_caller};
 use frame_system::RawOrigin;
-use sp_runtime::traits::Bounded;
+use cessp_runtime::traits::Bounded;
 
 use crate::Pallet as Bounties;
 use pallet_treasury::Pallet as Treasury;

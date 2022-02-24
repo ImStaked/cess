@@ -14,7 +14,7 @@ use cessp_consensus_rrsc::{
 };
 use sp_consensus_slots::Slot;
 use cessp_core::{Pair, Public};
-use sp_runtime::traits::{DigestItemFor, Header};
+use cessp_runtime::traits::{DigestItemFor, Header};
 
 /// RRSC verification parameters
 pub(super) struct VerificationParams<'a, B: 'a + BlockT> {

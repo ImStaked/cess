@@ -26,13 +26,13 @@ use hash_db::Hasher;
 use cessp_core::storage::{ChildInfo, TrackedStorageKey};
 #[cfg(feature = "std")]
 use cessp_core::traits::RuntimeCode;
-use sp_std::vec::Vec;
+use cessp_std::vec::Vec;
 
 /// A state backend is used to read state data and can have changes committed
 /// to it.
 ///
 /// The clone operation (if implemented) should be cheap.
-pub trait Backend<H: Hasher>: sp_std::fmt::Debug {
+pub trait Backend<H: Hasher>: cessp_std::fmt::Debug {
 	/// An error type when fetching data is not possible.
 	type Error: super::Error;
 

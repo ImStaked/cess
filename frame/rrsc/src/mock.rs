@@ -29,19 +29,19 @@ use pallet_session::historical as pallet_session_historical;
 use pallet_staking::EraIndex;
 use sp_consensus_rrsc::{AuthorityId, AuthorityPair, Slot};
 use sp_consensus_vrf::schnorrkel::{VRFOutput, VRFProof};
-use sp_core::{
+use cessp_core::{
 	crypto::{IsWrappedBy, KeyTypeId, Pair},
 	H256, U256,
 };
-use sp_io;
-use sp_runtime::{
+use cessp_io;
+use cessp_runtime::{
 	curve::PiecewiseLinear,
 	impl_opaque_keys,
 	testing::{Digest, DigestItem, Header, TestXt},
 	traits::{Header as _, IdentityLookup, OpaqueKeys},
 	Perbill,
 };
-use sp_staking::SessionIndex;
+use cessp_staking::SessionIndex;
 
 type DummyValidatorId = u64;
 
@@ -84,7 +84,7 @@ impl frame_system::Config for Test {
 	type Call = Call;
 	type Hash = H256;
 	type Version = ();
-	type Hashing = sp_runtime::traits::BlakeTwo256;
+	type Hashing = cessp_runtime::traits::BlakeTwo256;
 	type AccountId = DummyValidatorId;
 	type Lookup = IdentityLookup<Self::AccountId>;
 	type Header = Header;
@@ -351,7 +351,7 @@ pub fn make_vrf_output(
 	slot: Slot,
 	pair: &sp_consensus_rrsc::AuthorityPair,
 ) -> (VRFOutput, VRFProof, [u8; 32]) {
-	let pair = sp_core::sr25519::Pair::from_ref(pair).as_ref();
+	let pair = cessp_core::sr25519::Pair::from_ref(pair).as_ref();
 	let transcript = sp_consensus_rrsc::make_transcript(&RRSC::randomness(), slot, 0);
 	let vrf_inout = pair.vrf_sign(transcript);
 	let vrf_randomness: sp_consensus_vrf::schnorrkel::Randomness =
@@ -362,13 +362,13 @@ pub fn make_vrf_output(
 	(vrf_output, vrf_proof, vrf_randomness)
 }
 
-pub fn new_test_ext(authorities_len: usize) -> sp_io::TestExternalities {
+pub fn new_test_ext(authorities_len: usize) -> cessp_io::TestExternalities {
 	new_test_ext_with_pairs(authorities_len).1
 }
 
 pub fn new_test_ext_with_pairs(
 	authorities_len: usize,
-) -> (Vec<AuthorityPair>, sp_io::TestExternalities) {
+) -> (Vec<AuthorityPair>, cessp_io::TestExternalities) {
 	let pairs = (0..authorities_len)
 		.map(|i| AuthorityPair::from_seed(&U256::from(i).into()))
 		.collect::<Vec<_>>();
@@ -378,7 +378,7 @@ pub fn new_test_ext_with_pairs(
 	(pairs, new_test_ext_raw_authorities(public))
 }
 
-pub fn new_test_ext_raw_authorities(authorities: Vec<AuthorityId>) -> sp_io::TestExternalities {
+pub fn new_test_ext_raw_authorities(authorities: Vec<AuthorityId>) -> cessp_io::TestExternalities {
 	let mut t = frame_system::GenesisConfig::default().build_storage::<Test>().unwrap();
 
 	let balances: Vec<_> = (0..authorities.len()).map(|i| (i as u64, 10_000_000)).collect();

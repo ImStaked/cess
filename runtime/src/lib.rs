@@ -26,20 +26,20 @@ use sp_api::impl_runtime_apis;
 use pallet_im_online::sr25519::AuthorityId as ImOnlineId;
 use pallet_session::historical as pallet_session_historical;
 use sp_authority_discovery::AuthorityId as AuthorityDiscoveryId;
-use sp_core::{
+use cessp_core::{
 	crypto::KeyTypeId,
 	u32_trait::{_1, _2, _3, _4, _5},
 	OpaqueMetadata
 };
 use codec::Decode;
-use sp_inherents::{CheckInherentsResult, InherentData};
-use sp_runtime::{
+use cessp_inherents::{CheckInherentsResult, InherentData};
+use cessp_runtime::{
 	create_runtime_str, generic, impl_opaque_keys, curve::PiecewiseLinear,
 	traits::{AccountIdLookup, BlakeTwo256, Block as BlockT, IdentifyAccount, NumberFor, Verify, OpaqueKeys, },
 	transaction_validity::{TransactionSource, TransactionValidity, TransactionPriority},
 	ApplyExtrinsicResult, MultiSignature, Perbill, Permill, Percent,
 };
-use sp_std::prelude::*;
+use cessp_std::prelude::*;
 #[cfg(feature = "std")]
 use sp_version::NativeVersion;
 use sp_version::RuntimeVersion;
@@ -70,7 +70,7 @@ use pallet_contracts::weights::WeightInfo;
 #[cfg(any(feature = "std", test))]
 pub use pallet_staking::StakerStatus;
 #[cfg(any(feature = "std", test))]
-pub use sp_runtime::BuildStorage;
+pub use cessp_runtime::BuildStorage;
 
 mod voter_bags;
 
@@ -91,7 +91,7 @@ pub type Balance = u128;
 pub type Index = u32;
 
 /// A hash of some data used by the chain.
-pub type Hash = sp_core::H256;
+pub type Hash = cessp_core::H256;
 
 /// Opaque types. These are used by the CLI to instantiate machinery that don't need to know
 /// the specifics of the runtime. They can then be made to be agnostic over specific formats
@@ -100,7 +100,7 @@ pub type Hash = sp_core::H256;
 pub mod opaque {
 	use super::*;
 
-	pub use sp_runtime::OpaqueExtrinsic as UncheckedExtrinsic;
+	pub use cessp_runtime::OpaqueExtrinsic as UncheckedExtrinsic;
 
 	/// Opaque block header type.
 	pub type Header = generic::Header<BlockNumber, BlakeTwo256>;
@@ -312,7 +312,7 @@ sp_npos_elections::generate_solution_type!(
 	pub struct NposSolution16::<
 		VoterIndex = u32,
 		TargetIndex = u16,
-		Accuracy = sp_runtime::PerU16,
+		Accuracy = cessp_runtime::PerU16,
 	>(16)
 );
 
@@ -504,7 +504,7 @@ pallet_staking_reward_curve::build! {
 }
 
 parameter_types! {
-	pub const SessionsPerEra: sp_staking::SessionIndex = 6;
+	pub const SessionsPerEra: cessp_staking::SessionIndex = 6;
 	pub const BondingDuration: pallet_staking::EraIndex = 24 * 28;
 	pub const SlashDeferDuration: pallet_staking::EraIndex = 24 * 7; // 1/4 the bonding duration.
 	pub const RewardCurve: &'static PiecewiseLinear<'static> = &REWARD_CURVE;
@@ -636,11 +636,11 @@ impl frame_support::pallet_prelude::Get<Option<(usize, sp_npos_elections::Extend
 	for OffchainRandomBalancing
 {
 	fn get() -> Option<(usize, sp_npos_elections::ExtendedBalance)> {
-		use sp_runtime::traits::TrailingZeroInput;
+		use cessp_runtime::traits::TrailingZeroInput;
 		let iters = match MINER_MAX_ITERATIONS {
 			0 => 0,
 			max @ _ => {
-				let seed = sp_io::offchain::random_seed();
+				let seed = cessp_io::offchain::random_seed();
 				let random = <u32>::decode(&mut TrailingZeroInput::new(&seed))
 					.expect("input is padded with zeroes; qed") %
 					max.saturating_add(1);
@@ -883,7 +883,7 @@ construct_runtime!(
 );
 
 /// The address format for describing accounts.
-pub type Address = sp_runtime::MultiAddress<AccountId, ()>;
+pub type Address = cessp_runtime::MultiAddress<AccountId, ()>;
 /// Block header type as expected by this runtime.
 pub type Header = generic::Header<BlockNumber, BlakeTwo256>;
 /// Block type as expected by this runtime.
@@ -1157,7 +1157,7 @@ impl_runtime_apis! {
 
 		fn dispatch_benchmark(
 			config: frame_benchmarking::BenchmarkConfig
-		) -> Result<Vec<frame_benchmarking::BenchmarkBatch>, sp_runtime::RuntimeString> {
+		) -> Result<Vec<frame_benchmarking::BenchmarkBatch>, cessp_runtime::RuntimeString> {
 			use frame_benchmarking::{Benchmarking, BenchmarkBatch, add_benchmark, TrackedStorageKey};
 
 			use frame_system_benchmarking::Pallet as SystemBench;

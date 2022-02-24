@@ -22,8 +22,8 @@ use super::{
 	RRSCEpochConfiguration, Slot, RRSC_ENGINE_ID,
 };
 use codec::{Codec, Decode, Encode};
-use sp_runtime::{DigestItem, RuntimeDebug};
-use sp_std::vec::Vec;
+use cessp_runtime::{DigestItem, RuntimeDebug};
+use cessp_std::vec::Vec;
 
 use cessp_consensus_vrf::schnorrkel::{Randomness, VRFOutput, VRFProof};
 

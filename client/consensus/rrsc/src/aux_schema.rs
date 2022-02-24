@@ -8,7 +8,7 @@ use sc_client_api::backend::AuxStore;
 use sc_consensus_epochs::{migration::EpochChangesForV0, EpochChangesFor, SharedEpochChanges};
 use sp_blockchain::{Error as ClientError, Result as ClientResult};
 use cessp_consensus_rrsc::{RRSCBlockWeight, RRSCGenesisConfiguration};
-use sp_runtime::traits::Block as BlockT;
+use cessp_runtime::traits::Block as BlockT;
 
 const RRSC_EPOCH_CHANGES_VERSION: &[u8] = b"rrsc_epoch_changes_version";
 const RRSC_EPOCH_CHANGES_KEY: &[u8] = b"rrsc_epoch_changes";
@@ -119,7 +119,7 @@ mod test {
 	use cessp_consensus::Error as ConsensusError;
 	use cessp_consensus_rrsc::{AllowedSlots, RRSCGenesisConfiguration};
 	use cessp_core::H256;
-	use sp_runtime::traits::NumberFor;
+	use cessp_runtime::traits::NumberFor;
 	use substrate_test_runtime_client;
 
 	#[test]

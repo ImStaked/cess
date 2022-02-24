@@ -18,7 +18,7 @@
 //! Block evaluation and evaluation errors.
 
 use codec::Encode;
-use sp_runtime::traits::{Block as BlockT, CheckedConversion, Header as HeaderT, One};
+use cessp_runtime::traits::{Block as BlockT, CheckedConversion, Header as HeaderT, One};
 
 // This is just a best effort to encode the number. None indicated that it's too big to encode
 // in a u128.

@@ -8,9 +8,9 @@ use sc_service::ChainType;
 use pallet_im_online::sr25519::AuthorityId as ImOnlineId;
 use sp_authority_discovery::AuthorityId as AuthorityDiscoveryId;
 use sp_consensus_rrsc::AuthorityId as RRSCId;
-use sp_core::{sr25519, Pair, Public};
+use cessp_core::{sr25519, Pair, Public};
 use sp_finality_grandpa::AuthorityId as GrandpaId;
-use sp_runtime::{
+use cessp_runtime::{
 	traits::{IdentifyAccount, Verify},
 	Perbill,
 };

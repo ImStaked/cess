@@ -1,0 +1,54 @@
+[package]
+name = "cess-frame-system"
+version = "4.0.0-dev"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+license = "Apache-2.0"
+homepage = "https://substrate.dev"
+repository = "https://github.com/paritytech/substrate/"
+description = "FRAME system module"
+readme = "README.md"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+serde = { version = "1.0.126", optional = true, features = ["derive"] }
+codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false, features = ["derive"] }
+scale-info = { version = "1.0", default-features = false, features = ["derive"] }
+cessp-core = { version = "4.0.0-dev", default-features = false, path = "../../primitives/core" }
+cessp-std = { version = "4.0.0-dev", default-features = false, path = "../../primitives/std" }
+cessp-io = { version = "4.0.0-dev", path = "../../primitives/io", default-features = false }
+cessp-runtime = { version = "4.0.0-dev", default-features = false, path = "../../primitives/runtime" }
+cessp-version = { version = "4.0.0-dev", default-features = false, path = "../../primitives/version" }
+cess-frame-support = { version = "4.0.0-dev", default-features = false, path = "../support" }
+log = { version = "0.4.14", default-features = false }
+
+[dev-dependencies]
+criterion = "0.3.3"
+cessp-externalities = { version = "0.10.0-dev", path = "../../primitives/externalities" }
+cess-substrate-test-runtime-client = { version = "2.0.0", path = "../../test-utils/runtime/client" }
+
+[features]
+default = ["std"]
+std = [
+	"serde",
+	"codec/std",
+	"scale-info/std",
+	"cessp-core/std",
+	"cessp-std/std",
+	"cessp-io/std",
+	"cess-frame-support/std",
+	"cessp-runtime/std",
+	"cessp-version/std",
+	"log/std",
+]
+runtime-benchmarks = [
+	"cessp-runtime/runtime-benchmarks",
+	"cess-frame-support/runtime-benchmarks",
+]
+try-runtime = ["cess-frame-support/try-runtime"]
+
+[[bench]]
+name = "bench"
+harness = false

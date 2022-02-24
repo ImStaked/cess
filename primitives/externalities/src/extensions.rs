@@ -23,7 +23,7 @@
 //! It is required that each extension implements the [`Extension`] trait.
 
 use crate::Error;
-use sp_std::{
+use cessp_std::{
 	any::{Any, TypeId},
 	boxed::Box,
 	collections::btree_map::{BTreeMap, Entry},

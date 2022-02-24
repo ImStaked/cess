@@ -51,9 +51,9 @@ use cessp_consensus::{
 use cessp_consensus_rrsc::inherents::RRSCInherentData;
 use sp_consensus_slots::Slot;
 use cessp_core::{crypto::Public, ExecutionContext};
-use sp_inherents::{CreateInherentDataProviders, InherentData, InherentDataProvider};
+use cessp_inherents::{CreateInherentDataProviders, InherentData, InherentDataProvider};
 use sp_keystore::{SyncCryptoStore, SyncCryptoStorePtr};
-use sp_runtime::{
+use cessp_runtime::{
 	generic::{BlockId, OpaqueDigestItemId},
 	traits::{Block as BlockT, DigestItemFor, Header, Zero},
 };
@@ -233,13 +233,13 @@ pub enum Error<B: BlockT> {
 	ParentBlockNoAssociatedWeight(B::Hash),
 	/// Check inherents error
 	#[display(fmt = "Checking inherents failed: {}", _0)]
-	CheckInherents(sp_inherents::Error),
+	CheckInherents(cessp_inherents::Error),
 	/// Unhandled check inherents error
 	#[display(fmt = "Checking inherents unhandled error: {}", "String::from_utf8_lossy(_0)")]
-	CheckInherentsUnhandled(sp_inherents::InherentIdentifier),
+	CheckInherentsUnhandled(cessp_inherents::InherentIdentifier),
 	/// Create inherents error.
 	#[display(fmt = "Creating inherents failed: {}", _0)]
-	CreateInherents(sp_inherents::Error),
+	CreateInherents(cessp_inherents::Error),
 	/// Client error
 	Client(sp_blockchain::Error),
 	/// Runtime Api error.
@@ -715,7 +715,7 @@ where
 		&self,
 		_slot: Slot,
 		claim: &Self::Claim,
-	) -> Vec<sp_runtime::DigestItem<B::Hash>> {
+	) -> Vec<cessp_runtime::DigestItem<B::Hash>> {
 		vec![<DigestItemFor<B> as CompatibleDigestItem>::rrsc_pre_digest(claim.0.clone())]
 	}
 

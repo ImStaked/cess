@@ -26,7 +26,7 @@ sc-consensus-epochs = { version = "0.10.0-dev", git = "https://github.com/parity
 futures = "0.3.16"
 derive_more = "0.99.2"
 sp-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
-sp-consensus = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-consensus = { version = "0.10.0-dev", path = "../../../../primitives/consensus/common" }
 cessp-core = { version = "4.0.0-dev", path = "../../../../primitives/core" }
 sp-application-crypto = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
 sp-keystore = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
@@ -36,5 +36,5 @@ cessc-consensus = { version = "0.10.0-dev", path = "../../common" }
 serde_json = "1.0.50"
 sp-keyring = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10'}
 sc-keystore = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10'}
-substrate-test-runtime-client = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10'}
+cess-substrate-test-runtime-client = { version = "2.0.0", path = "../../../../test-utils/runtime/client" }
 tempfile = "3.1.0"

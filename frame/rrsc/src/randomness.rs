@@ -22,7 +22,7 @@ use super::{
 	AuthorVrfRandomness, Config, EpochStart, NextRandomness, Randomness, VRF_OUTPUT_LENGTH,
 };
 use frame_support::traits::Randomness as RandomnessT;
-use sp_runtime::traits::Hash;
+use cessp_runtime::traits::Hash;
 
 /// Randomness usable by consensus protocols that **depend** upon finality and take action
 /// based upon on-chain commitments made during the epoch before the previous epoch.
@@ -50,7 +50,7 @@ use sp_runtime::traits::Hash;
 ///
 /// Adversaries should not possess many block production slots towards the beginning or
 /// end of every epoch, but they possess some influence over when they possess more slots.
-pub struct RandomnessFromTwoEpochsAgo<T>(sp_std::marker::PhantomData<T>);
+pub struct RandomnessFromTwoEpochsAgo<T>(cessp_std::marker::PhantomData<T>);
 
 /// Randomness usable by on-chain code that **does not depend** upon finality and takes
 /// action based upon on-chain commitments made during the previous epoch.
@@ -78,7 +78,7 @@ pub struct RandomnessFromTwoEpochsAgo<T>(sp_std::marker::PhantomData<T>);
 /// As an example usage, we determine parachain auctions ending times in Polkadot using
 /// `RandomnessFromOneEpochAgo` because it reduces bias from `CurrentBlockRandomness` and
 /// does not require the extra finality delay of `RandomnessFromTwoEpochsAgo`.
-pub struct RandomnessFromOneEpochAgo<T>(sp_std::marker::PhantomData<T>);
+pub struct RandomnessFromOneEpochAgo<T>(cessp_std::marker::PhantomData<T>);
 
 /// Randomness produced semi-freshly with each block, but inherits limitations of
 /// `RandomnessFromTwoEpochsAgo` from which it derives.
@@ -111,7 +111,7 @@ pub struct RandomnessFromOneEpochAgo<T>(sp_std::marker::PhantomData<T>);
 /// a RRSC-like approach that derives its `CurrentBlockRandomness`, and authorizes block
 /// production, based upon the relay parent's `CurrentBlockRandomness` or more likely the
 /// relay parent's `RandomnessFromTwoEpochsAgo`.
-pub struct CurrentBlockRandomness<T>(sp_std::marker::PhantomData<T>);
+pub struct CurrentBlockRandomness<T>(cessp_std::marker::PhantomData<T>);
 
 impl<T: Config> RandomnessT<T::Hash, T::BlockNumber> for RandomnessFromTwoEpochsAgo<T> {
 	fn random(subject: &[u8]) -> (T::Hash, T::BlockNumber) {

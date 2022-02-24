@@ -18,9 +18,9 @@
 //! Integration tests for ecdsa
 use sp_api::ProvideRuntimeApi;
 use sp_application_crypto::ecdsa::{AppPair, AppPublic};
-use sp_core::{crypto::Pair, testing::ECDSA};
+use cessp_core::{crypto::Pair, testing::ECDSA};
 use sp_keystore::{testing::KeyStore, SyncCryptoStore};
-use sp_runtime::generic::BlockId;
+use cessp_runtime::generic::BlockId;
 use std::sync::Arc;
 use substrate_test_runtime_client::{
 	runtime::TestAPI, DefaultTestClientBuilderExt, TestClientBuilder, TestClientBuilderExt,

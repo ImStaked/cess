@@ -28,19 +28,19 @@ use frame_support::traits::{Get, Currency, ReservableCurrency, LockIdentifier, s
 mod benchmarking;
 pub mod weights;
 pub use pallet::*;
-use sp_runtime::{
+use cessp_runtime::{
 	RuntimeDebug,
 	traits::{AccountIdConversion, StaticLookup},
 };
-use sp_std::prelude::*;
+use cessp_std::prelude::*;
 use codec::{Encode, Decode};
 use scale_info::TypeInfo;
-use sp_std::convert::TryInto;
+use cessp_std::convert::TryInto;
 use frame_system::{self as system};
 use frame_support::{dispatch::{Dispatchable, DispatchResult}, PalletId};
 pub use weights::WeightInfo;
-use sp_runtime::traits::CheckedAdd;
-use sp_runtime::traits::CheckedSub;
+use cessp_runtime::traits::CheckedAdd;
+use cessp_runtime::traits::CheckedSub;
 use frame_support::pallet_prelude::DispatchError;
 
 type AccountOf<T> = <T as frame_system::Config>::AccountId;

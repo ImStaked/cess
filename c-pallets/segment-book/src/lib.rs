@@ -31,12 +31,12 @@
 pub use pallet::*;
 mod benchmarking;
 pub mod weights;
-use sp_runtime::{
+use cessp_runtime::{
 	RuntimeDebug,
 	traits::{SaturatedConversion},
 };
 
-use sp_std::prelude::*;
+use cessp_std::prelude::*;
 use codec::{Encode, Decode};
 use frame_support::{
 	dispatch::DispatchResult,

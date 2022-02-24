@@ -19,7 +19,7 @@
 
 use crate::{KeyTypeId, RuntimePublic};
 
-use sp_std::vec::Vec;
+use cessp_std::vec::Vec;
 
 pub use cessp_core::sr25519::*;
 

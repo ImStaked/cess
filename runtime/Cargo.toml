@@ -14,10 +14,9 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '5.0.0-dev'
 
-[dependencies.sp-io]
+[dependencies.cessp-io]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../primitives/io"
 version = '4.0.0-dev'
 
 [dependencies.codec]
@@ -44,16 +43,14 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.frame-support]
+[dependencies.cess-frame-support]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../frame/support"
 version = '4.0.0-dev'
 
-[dependencies.frame-system]
+[dependencies.cess-frame-system]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../frame/system"
 version = '4.0.0-dev'
 
 [dependencies.frame-system-benchmarking]
@@ -142,10 +139,9 @@ default-features = false
 path = '../primitives/core'
 version = '4.0.0-dev'
 
-[dependencies.sp-inherents]
+[dependencies.cessp-inherents]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = '../primitives/inherents'
 version = '4.0.0-dev'
 
 [dependencies.sp-offchain]
@@ -154,10 +150,9 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.sp-runtime]
+[dependencies.cessp-runtime]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../primitives/runtime"
 version = '4.0.0-dev'
 
 [dependencies.sp-session]
@@ -166,10 +161,9 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.sp-std]
+[dependencies.cessp-std]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = '../primitives/std'
 version = '4.0.0-dev'
 
 [dependencies.sp-transaction-pool]
@@ -178,10 +172,9 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.sp-version]
+[dependencies.cessp-version]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = '../primitives/version'
 version = '4.0.0-dev'
 
 [dependencies.pallet-im-online]
@@ -280,10 +273,9 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.sp-staking]
+[dependencies.cessp-staking]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+path = "../primitives/staking"
 version = '4.0.0-dev'
 
 [dependencies.pallet-scheduler]
@@ -333,16 +325,16 @@ version = '0.1.0'
 default = ['std']
 runtime-benchmarks = [
     'frame-benchmarking',
-    'frame-support/runtime-benchmarks',
+    'cess-frame-support/runtime-benchmarks',
     'frame-system-benchmarking',
-    'frame-system/runtime-benchmarks',
+    'cess-frame-system/runtime-benchmarks',
     'hex-literal',
     'pallet-balances/runtime-benchmarks',
     'pallet-timestamp/runtime-benchmarks',
     'pallet-file-bank/runtime-benchmarks',
     'pallet-segment-book/runtime-benchmarks',
     'pallet-sminer/runtime-benchmarks',
-    'sp-runtime/runtime-benchmarks',
+    'cessp-runtime/runtime-benchmarks',
     "pallet-contracts/runtime-benchmarks",
 ]
 std = [
@@ -361,15 +353,15 @@ std = [
     "pallet-file-bank/std",
     "pallet-segment-book/std",
     "pallet-sminer/std",
-    "sp-io/std",
+    "cessp-io/std",
     "sp-authority-discovery/std",
     "sp-npos-elections/std",
-    "sp-staking/std",
+    "cessp-staking/std",
     'codec/std',
     'frame-executive/std',
-    'frame-support/std',
+    'cess-frame-support/std',
     'frame-system-rpc-runtime-api/std',
-    'frame-system/std',
+    'cess-frame-system/std',
     'pallet-cess-rrsc/std',
     'pallet-bags-list/std',
     'pallet-balances/std',
@@ -387,11 +379,11 @@ std = [
     'sp-block-builder/std',
     'cessp-consensus-rrsc/std',
     'cessp-core/std',
-    'sp-inherents/std',
+    'cessp-inherents/std',
     'sp-offchain/std',
-    'sp-runtime/std',
+    'cessp-runtime/std',
     'sp-session/std',
-    'sp-std/std',
+    'cessp-std/std',
     'sp-transaction-pool/std',
-    'sp-version/std',
+    'cessp-version/std',
 ]

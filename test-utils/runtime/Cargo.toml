@@ -1,0 +1,102 @@
+[package]
+name = "cess-substrate-test-runtime"
+version = "2.0.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+build = "build.rs"
+license = "Apache-2.0"
+homepage = "https://substrate.dev"
+repository = "https://github.com/paritytech/substrate/"
+publish = false
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+cessp-application-crypto = { version = "4.0.0-dev", default-features = false, path = "../../primitives/application-crypto" }
+sp-consensus-aura = { version = "0.10.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-consensus-rrsc = { version = "0.10.0-dev", default-features = false, path = "../../primitives/consensus/rrsc" }
+sp-block-builder = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false, features = ["derive"] }
+scale-info = { version = "1.0", default-features = false, features = ["derive"] }
+cessp-inherents = { version = "4.0.0-dev", default-features = false, path = "../../primitives/inherents" }
+sp-keyring = { version = "4.0.0-dev", optional = true, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+memory-db = { version = "0.27.0", default-features = false }
+sp-offchain = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-core = { version = "4.0.0-dev", default-features = false, path = "../../primitives/core" }
+cessp-std = { version = "4.0.0-dev", default-features = false, path = "../../primitives/std" }
+cessp-runtime-interface = { version = "4.0.0-dev", default-features = false, path = "../../primitives/runtime-interface" }
+cessp-io = { version = "4.0.0-dev", default-features = false, path = "../../primitives/io" }
+cess-frame-support = { version = "4.0.0-dev", default-features = false, path = "../../frame/support" }
+cessp-version = { version = "4.0.0-dev", default-features = false, path = "../../primitives/version" }
+sp-session = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sp-api = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-runtime = { version = "4.0.0-dev", default-features = false, path = "../../primitives/runtime" }
+pallet-cess-rrsc = { version = "1.0.0-dev", default-features = false, path = "../../frame/rrsc" }
+cess-frame-system = { version = "4.0.0-dev", default-features = false, path = "../../frame/system" }
+cess-frame-system-rpc-runtime-api = { version = "4.0.0-dev", default-features = false, path = "../../frame/system/rpc/runtime-api" }
+pallet-timestamp = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sp-finality-grandpa = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sp-trie = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sp-transaction-pool = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+trie-db = { version = "0.22.6", default-features = false }
+parity-util-mem = { version = "0.10.0", default-features = false, features = ["primitive-types"] }
+sc-service = { version = "0.10.0-dev", default-features = false, optional = true, features = ["test-helpers"], git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-state-machine = { version = "0.10.0-dev", default-features = false, path = "../../primitives/state-machine" }
+cessp-externalities = { version = "0.10.0-dev", default-features = false, path = "../../primitives/externalities" }
+
+# 3rd party
+cfg-if = "1.0"
+log = { version = "0.4.14", default-features = false }
+serde = { version = "1.0.126", optional = true, features = ["derive"] }
+
+[dev-dependencies]
+sc-block-builder = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+sc-executor = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-consensus = { version = "0.10.0-dev", path = "../../primitives/consensus/common" }
+cess-substrate-test-runtime-client = { version = "2.0.0", path = "./client" }
+futures = "0.3.9"
+
+[build-dependencies]
+substrate-wasm-builder = { version = "5.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+
+[features]
+default = [
+	"std",
+]
+std = [
+	"cessp-application-crypto/std",
+	"sp-consensus-aura/std",
+	"cessp-consensus-rrsc/std",
+	"sp-block-builder/std",
+	"codec/std",
+	"scale-info/std",
+	"cessp-inherents/std",
+	"sp-keyring",
+	"log/std",
+	"memory-db/std",
+	"sp-offchain/std",
+	"cessp-core/std",
+	"cessp-std/std",
+	"cessp-runtime-interface/std",
+	"cessp-io/std",
+	"cess-frame-support/std",
+	"cessp-version/std",
+	"serde",
+	"sp-session/std",
+	"sp-api/std",
+	"cessp-runtime/std",
+	"cessp-externalities/std",
+	"cessp-state-machine/std",
+	"pallet-cess-rrsc/std",
+	"cess-frame-system-rpc-runtime-api/std",
+	"cess-frame-system/std",
+	"pallet-timestamp/std",
+	"sc-service",
+	"sp-finality-grandpa/std",
+	"sp-trie/std",
+	"sp-transaction-pool/std",
+	"trie-db/std",
+]
+# Special feature to disable logging
+disable-logging = [ "sp-api/disable-logging" ]

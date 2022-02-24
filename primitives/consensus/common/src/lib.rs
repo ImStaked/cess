@@ -24,7 +24,7 @@
 use std::{sync::Arc, time::Duration};
 
 use futures::prelude::*;
-use sp_runtime::{
+use cessp_runtime::{
 	generic::BlockId,
 	traits::{Block as BlockT, DigestFor, HashFor, NumberFor},
 };
@@ -37,7 +37,7 @@ mod select_chain;
 
 pub use self::error::Error;
 pub use select_chain::SelectChain;
-pub use sp_inherents::InherentData;
+pub use cessp_inherents::InherentData;
 pub use cessp_state_machine::Backend as StateBackend;
 
 /// Type of keys in the blockchain cache that consensus module could use for its needs.
@@ -331,7 +331,7 @@ impl<Block: BlockT> CanAuthorWith<Block> for NeverCanAuthor {
 /// A type from which a slot duration can be obtained.
 pub trait SlotData {
 	/// Gets the slot duration.
-	fn slot_duration(&self) -> sp_std::time::Duration;
+	fn slot_duration(&self) -> cessp_std::time::Duration;
 
 	/// The static slot key
 	const SLOT_KEY: &'static [u8];

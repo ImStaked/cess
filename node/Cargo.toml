@@ -130,9 +130,8 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
-[dependencies.sp-consensus]
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+[dependencies.cessp-consensus]
+path = "../primitives/consensus/common"
 version = '0.10.0-dev'
 
 [dependencies.cessp-consensus-rrsc]

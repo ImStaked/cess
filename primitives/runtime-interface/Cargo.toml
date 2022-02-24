@@ -15,8 +15,8 @@ targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
 sp-wasm-interface = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10', default-features = false }
-sp-std = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
-sp-tracing = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", tag = 'monthly-2021-10' }
+cessp-std = { version = "4.0.0-dev", default-features = false, path = "../std" }
+cessp-tracing = { version = "4.0.0-dev", default-features = false, path = "../tracing" }
 cessp-runtime-interface-proc-macro = { version = "4.0.0-dev", path = "proc-macro" }
 cessp-externalities = { version = "0.10.0-dev", optional = true, path = "../externalities" }
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
@@ -37,8 +37,8 @@ trybuild = "1.0.43"
 default = [ "std" ]
 std = [
 	"sp-wasm-interface/std",
-	"sp-std/std",
-	"sp-tracing/std",
+	"cessp-std/std",
+	"cessp-tracing/std",
 	"codec/std",
 	"cessp-externalities",
 	"primitive-types/std",

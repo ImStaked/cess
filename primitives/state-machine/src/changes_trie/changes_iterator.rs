@@ -403,7 +403,7 @@ where
 mod tests {
 	use super::*;
 	use crate::changes_trie::{input::InputPair, storage::InMemoryStorage, Configuration};
-	use sp_runtime::traits::BlakeTwo256;
+	use cessp_runtime::traits::BlakeTwo256;
 	use std::iter::FromIterator;
 
 	fn child_key() -> PrefixedStorageKey {

@@ -37,8 +37,8 @@ use cessp_core::{
 #[cfg(feature = "std")]
 use cessp_externalities::{Extension, Extensions};
 #[cfg(not(feature = "std"))]
-use sp_std::collections::btree_map::BTreeMap as Map;
-use sp_std::{collections::btree_set::BTreeSet, vec::Vec};
+use cessp_std::collections::btree_map::BTreeMap as Map;
+use cessp_std::{collections::btree_set::BTreeSet, vec::Vec};
 #[cfg(feature = "std")]
 use std::collections::{hash_map::Entry as MapEntry, HashMap as Map};
 #[cfg(feature = "std")]
@@ -157,7 +157,7 @@ pub struct StorageChanges<Transaction, H: Hasher, N: BlockNumber> {
 	pub changes_trie_transaction: Option<ChangesTrieTransaction<H, N>>,
 	/// Phantom data for block number until change trie support no_std.
 	#[cfg(not(feature = "std"))]
-	pub _ph: sp_std::marker::PhantomData<N>,
+	pub _ph: cessp_std::marker::PhantomData<N>,
 
 	/// Changes to the transaction index,
 	#[cfg(feature = "std")]
@@ -206,7 +206,7 @@ pub struct StorageTransactionCache<Transaction, H: Hasher, N: BlockNumber> {
 	pub(crate) changes_trie_transaction_storage_root: Option<Option<H::Out>>,
 	/// Phantom data for block number until change trie support no_std.
 	#[cfg(not(feature = "std"))]
-	pub(crate) _ph: sp_std::marker::PhantomData<N>,
+	pub(crate) _ph: cessp_std::marker::PhantomData<N>,
 }
 
 impl<Transaction, H: Hasher, N: BlockNumber> StorageTransactionCache<Transaction, H, N> {
@@ -491,7 +491,7 @@ impl OverlayedChanges {
 			),
 		>,
 	) {
-		use sp_std::mem::take;
+		use cessp_std::mem::take;
 		(
 			take(&mut self.top).drain_commited(),
 			take(&mut self.children)
@@ -749,7 +749,7 @@ where
 	K: Ord,
 	F: FnMut(&K, &mut V) -> bool,
 {
-	let old = sp_std::mem::replace(map, Map::default());
+	let old = cessp_std::mem::replace(map, Map::default());
 	for (k, mut v) in old.into_iter() {
 		if f(&k, &mut v) {
 			map.insert(k, v);

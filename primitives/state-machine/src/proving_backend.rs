@@ -383,7 +383,7 @@ mod tests {
 		proving_backend::create_proof_check_backend, trie_backend::tests::test_trie,
 		InMemoryBackend,
 	};
-	use sp_runtime::traits::BlakeTwo256;
+	use cessp_runtime::traits::BlakeTwo256;
 	use sp_trie::PrefixedMemoryDB;
 
 	fn test_proving<'a>(

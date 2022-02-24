@@ -20,7 +20,7 @@
 use codec::{Decode, Encode, EncodeLike};
 use schnorrkel::errors::MultiSignatureStage;
 use cessp_core::U512;
-use sp_std::{
+use cessp_std::{
 	convert::TryFrom,
 	ops::{Deref, DerefMut},
 	prelude::*,

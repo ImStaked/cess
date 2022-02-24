@@ -39,7 +39,7 @@ pub use scale_info;
 #[cfg(feature = "std")]
 pub use serde;
 #[doc(hidden)]
-pub use sp_std::{convert::TryFrom, ops::Deref, vec::Vec};
+pub use cessp_std::{convert::TryFrom, ops::Deref, vec::Vec};
 
 pub mod ecdsa;
 pub mod ed25519;

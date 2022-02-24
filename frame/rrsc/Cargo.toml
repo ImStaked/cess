@@ -17,19 +17,19 @@ codec = { package = "parity-scale-codec", version = "2.0.0", default-features = 
 scale-info = { version = "1.0", default-features = false, features = ["derive"] }
 
 frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10', optional = true }
-frame-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cess-frame-support = { version = "4.0.0-dev", default-features = false, path = "../support" }
+cess-frame-system = { version = "4.0.0-dev", default-features = false, path = "../system" }
 pallet-authorship = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 pallet-session = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
 pallet-timestamp = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-application-crypto = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-application-crypto = { version = "4.0.0-dev", default-features = false, path = "../../primitives/application-crypto" }
 cessp-consensus-rrsc = { version = "0.10.0-dev", default-features = false, path = "../../primitives/consensus/rrsc" }
 cessp-consensus-vrf = { version = "0.10.0-dev", default-features = false, path = "../../primitives/consensus/vrf" }
 cessp-io = { version = "4.0.0-dev", default-features = false, path = "../../primitives/io" }
-sp-runtime = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-runtime = { version = "4.0.0-dev", default-features = false, path = "../../primitives/runtime" }
 sp-session = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-staking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
-sp-std = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate", tag = 'monthly-2021-10' }
+cessp-staking = { version = "4.0.0-dev", default-features = false, path = "../../primitives/staking" }
+cessp-std = { version = "4.0.0-dev", default-features = false, path = "../../primitives/std" }
 log = { version = "0.4.14", default-features = false }
 
 [dev-dependencies]
@@ -45,20 +45,20 @@ default = ["std"]
 std = [
 	"codec/std",
 	"frame-benchmarking/std",
-	"frame-support/std",
-	"frame-system/std",
+	"cess-frame-support/std",
+	"cess-frame-system/std",
 	"pallet-authorship/std",
 	"pallet-session/std",
 	"pallet-timestamp/std",
-	"sp-application-crypto/std",
+	"cessp-application-crypto/std",
 	"cessp-consensus-rrsc/std",
 	"cessp-consensus-vrf/std",
 	"cessp-io/std",
-	"sp-runtime/std",
+	"cessp-runtime/std",
 	"sp-session/std",
-	"sp-staking/std",
-	"sp-std/std",
+	"cessp-staking/std",
+	"cessp-std/std",
 	"log/std",
 ]
 runtime-benchmarks = ["frame-benchmarking"]
-try-runtime = ["frame-support/try-runtime"]
+try-runtime = ["cess-frame-support/try-runtime"]

@@ -158,6 +158,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e22d1f4b888c298a027c99dc9048015fac177587de20fc30232a057dfbe24a21"
 
 [[package]]
+name = "assert_matches"
+version = "1.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9b34d609dfbaf33d6889b2b7106d3ca345eacad44200913df5ba02bfd31d2ba9"
+
+[[package]]
 name = "async-channel"
 version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -693,10 +699,68 @@ dependencies = [
 ]
 
 [[package]]
+name = "cess-frame-support"
+version = "4.0.0-dev"
+dependencies = [
+ "assert_matches",
+ "bitflags",
+ "cess-frame-system",
+ "cessp-arithmetic",
+ "cessp-core",
+ "cessp-inherents",
+ "cessp-io",
+ "cessp-runtime",
+ "cessp-staking",
+ "cessp-state-machine",
+ "cessp-std",
+ "cessp-tracing",
+ "frame-metadata",
+ "frame-support-procedural 4.0.0-dev",
+ "impl-trait-for-tuples",
+ "log",
+ "once_cell",
+ "parity-scale-codec",
+ "parity-util-mem",
+ "paste",
+ "pretty_assertions",
+ "scale-info",
+ "serde",
+ "smallvec",
+]
+
+[[package]]
+name = "cess-frame-system"
+version = "4.0.0-dev"
+dependencies = [
+ "cess-frame-support",
+ "cess-substrate-test-runtime-client",
+ "cessp-core",
+ "cessp-externalities",
+ "cessp-io",
+ "cessp-runtime",
+ "cessp-std",
+ "cessp-version",
+ "criterion",
+ "log",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+]
+
+[[package]]
+name = "cess-frame-system-rpc-runtime-api"
+version = "4.0.0-dev"
+dependencies = [
+ "parity-scale-codec",
+ "sp-api",
+]
+
+[[package]]
 name = "cess-node"
 version = "3.0.0-monthly-2021-10"
 dependencies = [
  "cess-node-runtime",
+ "cessp-consensus",
  "cessp-consensus-rrsc",
  "cessp-core",
  "frame-benchmarking",
@@ -731,7 +795,6 @@ dependencies = [
  "sp-authorship",
  "sp-block-builder",
  "sp-blockchain",
- "sp-consensus",
  "sp-finality-grandpa",
  "sp-keystore",
  "sp-runtime",
@@ -746,13 +809,19 @@ dependencies = [
 name = "cess-node-runtime"
 version = "3.0.0-monthly-2021-10"
 dependencies = [
+ "cess-frame-support",
+ "cess-frame-system",
  "cessp-consensus-rrsc",
  "cessp-core",
+ "cessp-inherents",
+ "cessp-io",
+ "cessp-runtime",
+ "cessp-staking",
+ "cessp-std",
+ "cessp-version",
  "frame-benchmarking",
  "frame-election-provider-support",
  "frame-executive",
- "frame-support",
- "frame-system",
  "frame-system-benchmarking",
  "frame-system-rpc-runtime-api",
  "hex-literal",
@@ -789,17 +858,102 @@ dependencies = [
  "sp-api",
  "sp-authority-discovery",
  "sp-block-builder",
- "sp-inherents",
- "sp-io",
  "sp-npos-elections",
  "sp-offchain",
- "sp-runtime",
  "sp-session",
- "sp-staking",
- "sp-std",
  "sp-transaction-pool",
- "sp-version",
  "substrate-wasm-builder",
+]
+
+[[package]]
+name = "cess-substrate-test-client"
+version = "2.0.1"
+dependencies = [
+ "async-trait",
+ "cessp-consensus",
+ "cessp-core",
+ "cessp-keystore",
+ "cessp-runtime",
+ "cessp-state-machine",
+ "futures 0.3.21",
+ "hex",
+ "parity-scale-codec",
+ "sc-client-api",
+ "sc-client-db",
+ "sc-consensus",
+ "sc-executor",
+ "sc-light",
+ "sc-offchain",
+ "sc-service",
+ "serde",
+ "serde_json",
+ "sp-blockchain",
+ "sp-keyring",
+]
+
+[[package]]
+name = "cess-substrate-test-runtime"
+version = "2.0.0"
+dependencies = [
+ "cess-frame-support",
+ "cess-frame-system",
+ "cess-frame-system-rpc-runtime-api",
+ "cess-substrate-test-runtime-client",
+ "cessp-application-crypto",
+ "cessp-consensus",
+ "cessp-consensus-rrsc",
+ "cessp-core",
+ "cessp-externalities",
+ "cessp-inherents",
+ "cessp-io",
+ "cessp-runtime",
+ "cessp-runtime-interface",
+ "cessp-state-machine",
+ "cessp-std",
+ "cessp-version",
+ "cfg-if 1.0.0",
+ "futures 0.3.21",
+ "log",
+ "memory-db",
+ "pallet-cess-rrsc",
+ "pallet-timestamp",
+ "parity-scale-codec",
+ "parity-util-mem",
+ "sc-block-builder",
+ "sc-executor",
+ "sc-service",
+ "scale-info",
+ "serde",
+ "sp-api",
+ "sp-block-builder",
+ "sp-consensus-aura",
+ "sp-finality-grandpa",
+ "sp-keyring",
+ "sp-offchain",
+ "sp-session",
+ "sp-transaction-pool",
+ "sp-trie",
+ "substrate-wasm-builder",
+ "trie-db",
+]
+
+[[package]]
+name = "cess-substrate-test-runtime-client"
+version = "2.0.0"
+dependencies = [
+ "cess-substrate-test-client",
+ "cess-substrate-test-runtime",
+ "cessp-consensus",
+ "cessp-core",
+ "cessp-runtime",
+ "futures 0.3.21",
+ "parity-scale-codec",
+ "sc-block-builder",
+ "sc-client-api",
+ "sc-consensus",
+ "sc-light",
+ "sp-api",
+ "sp-blockchain",
 ]
 
 [[package]]
@@ -832,10 +986,27 @@ version = "4.0.0-dev"
 dependencies = [
  "cessp-core",
  "cessp-io",
+ "cessp-std",
  "parity-scale-codec",
  "scale-info",
  "serde",
- "sp-std",
+]
+
+[[package]]
+name = "cessp-arithmetic"
+version = "4.0.0-dev"
+dependencies = [
+ "cessp-debug-derive",
+ "cessp-std",
+ "criterion",
+ "integer-sqrt",
+ "num-traits",
+ "parity-scale-codec",
+ "primitive-types",
+ "rand 0.7.3",
+ "scale-info",
+ "serde",
+ "static_assertions",
 ]
 
 [[package]]
@@ -844,16 +1015,16 @@ version = "0.10.0-dev"
 dependencies = [
  "async-trait",
  "cessp-core",
+ "cessp-inherents",
+ "cessp-runtime",
  "cessp-state-machine",
+ "cessp-std",
+ "cessp-version",
  "futures 0.3.21",
  "futures-timer 3.0.2",
  "log",
  "parity-scale-codec",
- "sp-inherents",
- "sp-runtime",
- "sp-std",
  "sp-test-primitives",
- "sp-version",
  "thiserror",
 ]
 
@@ -867,15 +1038,15 @@ dependencies = [
  "cessp-consensus-slots",
  "cessp-consensus-vrf",
  "cessp-core",
+ "cessp-inherents",
+ "cessp-runtime",
+ "cessp-std",
  "merlin",
  "parity-scale-codec",
  "scale-info",
  "serde",
  "sp-api",
- "sp-inherents",
  "sp-keystore",
- "sp-runtime",
- "sp-std",
  "sp-timestamp",
 ]
 
@@ -883,9 +1054,9 @@ dependencies = [
 name = "cessp-consensus-slots"
 version = "0.10.0-dev"
 dependencies = [
+ "cessp-arithmetic",
+ "cessp-runtime",
  "parity-scale-codec",
- "sp-arithmetic",
- "sp-runtime",
 ]
 
 [[package]]
@@ -893,10 +1064,10 @@ name = "cessp-consensus-vrf"
 version = "0.10.0-dev"
 dependencies = [
  "cessp-core",
+ "cessp-runtime",
+ "cessp-std",
  "parity-scale-codec",
  "schnorrkel",
- "sp-runtime",
- "sp-std",
 ]
 
 [[package]]
@@ -906,8 +1077,10 @@ dependencies = [
  "base58",
  "blake2-rfc",
  "byteorder",
+ "cessp-debug-derive",
  "cessp-externalities",
  "cessp-runtime-interface",
+ "cessp-std",
  "criterion",
  "dyn-clonable",
  "ed25519-dalek",
@@ -934,9 +1107,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2 0.9.9",
- "sp-debug-derive",
  "sp-serializer",
- "sp-std",
  "sp-storage",
  "substrate-bip39",
  "thiserror",
@@ -948,13 +1119,36 @@ dependencies = [
 ]
 
 [[package]]
+name = "cessp-debug-derive"
+version = "3.0.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "cessp-externalities"
 version = "0.10.0-dev"
 dependencies = [
+ "cessp-std",
  "environmental",
  "parity-scale-codec",
- "sp-std",
  "sp-storage",
+]
+
+[[package]]
+name = "cessp-inherents"
+version = "4.0.0-dev"
+dependencies = [
+ "async-trait",
+ "cessp-core",
+ "cessp-runtime",
+ "cessp-std",
+ "futures 0.3.21",
+ "impl-trait-for-tuples",
+ "parity-scale-codec",
+ "thiserror",
 ]
 
 [[package]]
@@ -966,14 +1160,14 @@ dependencies = [
  "cessp-keystore",
  "cessp-runtime-interface",
  "cessp-state-machine",
+ "cessp-std",
+ "cessp-tracing",
  "futures 0.3.21",
  "hash-db",
  "libsecp256k1 0.6.0",
  "log",
  "parity-scale-codec",
  "parking_lot 0.11.2",
- "sp-std",
- "sp-tracing",
  "sp-trie",
  "sp-wasm-interface",
  "tracing",
@@ -999,6 +1193,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "cessp-runtime"
+version = "4.0.0-dev"
+dependencies = [
+ "cess-substrate-test-runtime-client",
+ "cessp-application-crypto",
+ "cessp-arithmetic",
+ "cessp-core",
+ "cessp-io",
+ "cessp-state-machine",
+ "cessp-std",
+ "cessp-tracing",
+ "either",
+ "hash256-std-hasher",
+ "impl-trait-for-tuples",
+ "log",
+ "parity-scale-codec",
+ "parity-util-mem",
+ "paste",
+ "rand 0.7.3",
+ "scale-info",
+ "serde",
+ "serde_json",
+ "sp-api",
+]
+
+[[package]]
 name = "cessp-runtime-interface"
 version = "4.0.0-dev"
 dependencies = [
@@ -1008,13 +1228,13 @@ dependencies = [
  "cessp-runtime-interface-proc-macro",
  "cessp-runtime-interface-test-wasm",
  "cessp-state-machine",
+ "cessp-std",
+ "cessp-tracing",
  "impl-trait-for-tuples",
  "parity-scale-codec",
  "primitive-types",
  "rustversion",
- "sp-std",
  "sp-storage",
- "sp-tracing",
  "sp-wasm-interface",
  "static_assertions",
  "trybuild",
@@ -1038,8 +1258,18 @@ dependencies = [
  "cessp-core",
  "cessp-io",
  "cessp-runtime-interface",
- "sp-std",
+ "cessp-std",
  "substrate-wasm-builder",
+]
+
+[[package]]
+name = "cessp-staking"
+version = "4.0.0-dev"
+dependencies = [
+ "cessp-runtime",
+ "cessp-std",
+ "parity-scale-codec",
+ "scale-info",
 ]
 
 [[package]]
@@ -1048,6 +1278,8 @@ version = "0.10.0-dev"
 dependencies = [
  "cessp-core",
  "cessp-externalities",
+ "cessp-runtime",
+ "cessp-std",
  "hash-db",
  "hex-literal",
  "log",
@@ -1058,13 +1290,47 @@ dependencies = [
  "rand 0.7.3",
  "smallvec",
  "sp-panic-handler",
- "sp-runtime",
- "sp-std",
  "sp-trie",
  "thiserror",
  "tracing",
  "trie-db",
  "trie-root",
+]
+
+[[package]]
+name = "cessp-std"
+version = "4.0.0-dev"
+
+[[package]]
+name = "cessp-tracing"
+version = "4.0.0-dev"
+dependencies = [
+ "cessp-std",
+ "erased-serde",
+ "log",
+ "parity-scale-codec",
+ "parking_lot 0.10.2",
+ "serde",
+ "serde_json",
+ "slog",
+ "tracing",
+ "tracing-core",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "cessp-version"
+version = "4.0.0-dev"
+dependencies = [
+ "cessp-runtime",
+ "cessp-std",
+ "impl-serde",
+ "parity-scale-codec",
+ "parity-wasm 0.42.2",
+ "scale-info",
+ "serde",
+ "sp-version-proc-macro 4.0.0-dev",
+ "thiserror",
 ]
 
 [[package]]
@@ -2010,7 +2276,7 @@ source = "git+https://github.com/paritytech/substrate.git?tag=monthly-2021-10#bf
 dependencies = [
  "bitflags",
  "frame-metadata",
- "frame-support-procedural",
+ "frame-support-procedural 4.0.0-dev (git+https://github.com/paritytech/substrate.git?tag=monthly-2021-10)",
  "impl-trait-for-tuples",
  "log",
  "once_cell",
@@ -2033,10 +2299,32 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural"
 version = "4.0.0-dev"
+dependencies = [
+ "Inflector",
+ "frame-support-procedural-tools 4.0.0-dev",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "frame-support-procedural"
+version = "4.0.0-dev"
 source = "git+https://github.com/paritytech/substrate.git?tag=monthly-2021-10#bf9683eee40f82cc4e01a05cd375b0e8bba3c8ef"
 dependencies = [
  "Inflector",
- "frame-support-procedural-tools",
+ "frame-support-procedural-tools 4.0.0-dev (git+https://github.com/paritytech/substrate.git?tag=monthly-2021-10)",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "frame-support-procedural-tools"
+version = "4.0.0-dev"
+dependencies = [
+ "frame-support-procedural-tools-derive 3.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -2047,8 +2335,17 @@ name = "frame-support-procedural-tools"
 version = "4.0.0-dev"
 source = "git+https://github.com/paritytech/substrate.git?tag=monthly-2021-10#bf9683eee40f82cc4e01a05cd375b0e8bba3c8ef"
 dependencies = [
- "frame-support-procedural-tools-derive",
+ "frame-support-procedural-tools-derive 3.0.0 (git+https://github.com/paritytech/substrate.git?tag=monthly-2021-10)",
  "proc-macro-crate 1.1.0",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "frame-support-procedural-tools-derive"
+version = "3.0.0"
+dependencies = [
  "proc-macro2",
  "quote",
  "syn",
@@ -4287,32 +4584,36 @@ dependencies = [
 name = "pallet-cess-bounties"
 version = "4.0.0-dev"
 dependencies = [
+ "cess-frame-support",
+ "cess-frame-system",
  "cessp-core",
  "cessp-io",
+ "cessp-runtime",
+ "cessp-std",
  "frame-benchmarking",
- "frame-support",
- "frame-system",
  "log",
  "pallet-balances",
  "pallet-treasury",
  "parity-scale-codec",
  "scale-info",
- "sp-runtime",
- "sp-std",
 ]
 
 [[package]]
 name = "pallet-cess-rrsc"
 version = "1.0.0-dev"
 dependencies = [
+ "cess-frame-support",
+ "cess-frame-system",
+ "cessp-application-crypto",
  "cessp-consensus-rrsc",
  "cessp-consensus-vrf",
  "cessp-core",
  "cessp-io",
+ "cessp-runtime",
+ "cessp-staking",
+ "cessp-std",
  "frame-benchmarking",
  "frame-election-provider-support",
- "frame-support",
- "frame-system",
  "log",
  "pallet-authorship",
  "pallet-balances",
@@ -4323,11 +4624,7 @@ dependencies = [
  "pallet-timestamp",
  "parity-scale-codec",
  "scale-info",
- "sp-application-crypto",
- "sp-runtime",
  "sp-session",
- "sp-staking",
- "sp-std",
 ]
 
 [[package]]
@@ -4455,17 +4752,17 @@ dependencies = [
 name = "pallet-file-bank"
 version = "0.1.0"
 dependencies = [
+ "cess-frame-support",
+ "cess-frame-system",
+ "cessp-io",
+ "cessp-runtime",
+ "cessp-std",
  "frame-benchmarking",
- "frame-support",
- "frame-system",
  "pallet-balances",
  "parity-scale-codec",
  "scale-info",
  "serde",
  "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
 ]
 
 [[package]]
@@ -4578,18 +4875,18 @@ dependencies = [
 name = "pallet-segment-book"
 version = "0.1.0"
 dependencies = [
+ "cess-frame-support",
+ "cess-frame-system",
+ "cessp-io",
+ "cessp-runtime",
+ "cessp-std",
  "frame-benchmarking",
- "frame-support",
- "frame-system",
  "pallet-balances",
  "pallet-sminer",
  "parity-scale-codec",
  "scale-info",
  "serde",
  "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
 ]
 
 [[package]]
@@ -4617,19 +4914,19 @@ dependencies = [
 name = "pallet-sminer"
 version = "0.1.0"
 dependencies = [
+ "cess-frame-support",
+ "cess-frame-system",
+ "cessp-core",
+ "cessp-io",
+ "cessp-runtime",
+ "cessp-std",
  "frame-benchmarking",
- "frame-support",
- "frame-system",
  "pallet-balances",
  "pallet-scheduler",
  "pallet-timestamp",
  "parity-scale-codec",
  "scale-info",
  "serde",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
 ]
 
 [[package]]
@@ -5989,13 +6286,20 @@ name = "sc-consensus-rrsc"
 version = "0.10.0-dev"
 dependencies = [
  "async-trait",
+ "cess-substrate-test-runtime-client",
  "cessc-consensus",
+ "cessp-application-crypto",
  "cessp-consensus",
  "cessp-consensus-rrsc",
  "cessp-consensus-slots",
  "cessp-consensus-vrf",
  "cessp-core",
+ "cessp-inherents",
  "cessp-io",
+ "cessp-keystore",
+ "cessp-runtime",
+ "cessp-tracing",
+ "cessp-version",
  "derive_more",
  "fork-tree",
  "futures 0.3.21",
@@ -6020,17 +6324,10 @@ dependencies = [
  "schnorrkel",
  "serde",
  "sp-api",
- "sp-application-crypto",
  "sp-block-builder",
  "sp-blockchain",
- "sp-inherents",
- "sp-keystore",
- "sp-runtime",
  "sp-timestamp",
- "sp-tracing",
- "sp-version",
  "substrate-prometheus-endpoint",
- "substrate-test-runtime-client",
  "tempfile",
 ]
 
@@ -6038,7 +6335,9 @@ dependencies = [
 name = "sc-consensus-rrsc-rpc"
 version = "0.10.0-dev"
 dependencies = [
+ "cess-substrate-test-runtime-client",
  "cessc-consensus",
+ "cessp-consensus",
  "cessp-consensus-rrsc",
  "cessp-core",
  "derive_more",
@@ -6055,11 +6354,9 @@ dependencies = [
  "sp-api",
  "sp-application-crypto",
  "sp-blockchain",
- "sp-consensus",
  "sp-keyring",
  "sp-keystore",
  "sp-runtime",
- "substrate-test-runtime-client",
  "tempfile",
 ]
 
@@ -7777,8 +8074,19 @@ dependencies = [
  "serde",
  "sp-runtime",
  "sp-std",
- "sp-version-proc-macro",
+ "sp-version-proc-macro 4.0.0-dev (git+https://github.com/paritytech/substrate.git?tag=monthly-2021-10)",
  "thiserror",
+]
+
+[[package]]
+name = "sp-version-proc-macro"
+version = "4.0.0-dev"
+dependencies = [
+ "cessp-version",
+ "parity-scale-codec",
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]

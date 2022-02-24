@@ -18,18 +18,18 @@
 
 use frame_support::traits::{Get, KeyOwnerProofSystem};
 use cessp_consensus_rrsc::{EquivocationProof, Slot};
-use sp_runtime::{
+use cessp_runtime::{
 	transaction_validity::{
 		InvalidTransaction, TransactionPriority, TransactionSource, TransactionValidity,
 		TransactionValidityError, ValidTransaction,
 	},
 	DispatchResult, Perbill,
 };
-use sp_staking::{
+use cessp_staking::{
 	offence::{Kind, Offence, OffenceError, ReportOffence},
 	SessionIndex,
 };
-use sp_std::prelude::*;
+use cessp_std::prelude::*;
 
 use crate::{Call, Config, Pallet};
 
@@ -93,7 +93,7 @@ impl<T: Config> HandleEquivocation<T> for () {
 /// below) and will dispatch to them directly, it's only purpose is to wire all
 /// subsystems together.
 pub struct EquivocationHandler<I, R, L> {
-	_phantom: sp_std::marker::PhantomData<(I, R, L)>,
+	_phantom: cessp_std::marker::PhantomData<(I, R, L)>,
 }
 
 impl<I, R, L> Default for EquivocationHandler<I, R, L> {

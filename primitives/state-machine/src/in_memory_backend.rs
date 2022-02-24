@@ -74,7 +74,7 @@ where
 
 	/// Apply the given transaction to this backend and set the root to the given value.
 	pub fn apply_transaction(&mut self, root: H::Out, transaction: MemoryDB<H>) {
-		let mut storage = sp_std::mem::take(self).into_storage();
+		let mut storage = cessp_std::mem::take(self).into_storage();
 		storage.consolidate(transaction);
 		*self = TrieBackend::new(storage, root);
 	}
@@ -168,7 +168,7 @@ where
 mod tests {
 	use super::*;
 	use crate::backend::Backend;
-	use sp_runtime::traits::BlakeTwo256;
+	use cessp_runtime::traits::BlakeTwo256;
 
 	/// Assert in memory backend with only child trie keys works as trie backend.
 	#[test]

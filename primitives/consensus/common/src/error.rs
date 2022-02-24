@@ -44,7 +44,7 @@ pub enum Error {
 	FaultyTimer(#[from] std::io::Error),
 	/// Error while working with inherent data.
 	#[error("InherentData error: {0}")]
-	InherentData(#[from] sp_inherents::Error),
+	InherentData(#[from] cessp_inherents::Error),
 	/// Unable to propose a block.
 	#[error("Unable to create block proposal.")]
 	CannotPropose,

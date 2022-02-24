@@ -39,10 +39,10 @@ pub use secrecy::ExposeSecret;
 pub use secrecy::SecretString;
 use cessp_runtime_interface::pass_by::PassByInner;
 #[cfg(feature = "std")]
-use sp_std::convert::TryInto;
+use cessp_std::convert::TryInto;
 #[doc(hidden)]
-pub use sp_std::ops::Deref;
-use sp_std::{convert::TryFrom, hash::Hash, str, vec::Vec};
+pub use cessp_std::ops::Deref;
+use cessp_std::{convert::TryFrom, hash::Hash, str, vec::Vec};
 /// Trait to zeroize a memory buffer.
 pub use zeroize::Zeroize;
 
@@ -773,7 +773,7 @@ impl From<[u8; 32]> for AccountId32 {
 	}
 }
 
-impl<'a> sp_std::convert::TryFrom<&'a [u8]> for AccountId32 {
+impl<'a> cessp_std::convert::TryFrom<&'a [u8]> for AccountId32 {
 	type Error = ();
 	fn try_from(x: &'a [u8]) -> Result<AccountId32, ()> {
 		if x.len() == 32 {
@@ -811,15 +811,15 @@ impl std::fmt::Display for AccountId32 {
 	}
 }
 
-impl sp_std::fmt::Debug for AccountId32 {
+impl cessp_std::fmt::Debug for AccountId32 {
 	#[cfg(feature = "std")]
-	fn fmt(&self, f: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, f: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		let s = self.to_ss58check();
 		write!(f, "{} ({}...)", crate::hexdisplay::HexDisplay::from(&self.0), &s[0..8])
 	}
 
 	#[cfg(not(feature = "std"))]
-	fn fmt(&self, _: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+	fn fmt(&self, _: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		Ok(())
 	}
 }
@@ -846,7 +846,7 @@ impl<'de> serde::Deserialize<'de> for AccountId32 {
 }
 
 #[cfg(feature = "std")]
-impl sp_std::str::FromStr for AccountId32 {
+impl cessp_std::str::FromStr for AccountId32 {
 	type Err = &'static str;
 
 	fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -883,7 +883,7 @@ mod dummy {
 		fn as_mut(&mut self) -> &mut [u8] {
 			unsafe {
 				#[allow(mutable_transmutes)]
-				sp_std::mem::transmute::<_, &'static mut [u8]>(&b""[..])
+				cessp_std::mem::transmute::<_, &'static mut [u8]>(&b""[..])
 			}
 		}
 	}
@@ -1222,8 +1222,8 @@ pub struct CryptoTypeId(pub [u8; 4]);
 pub struct CryptoTypePublicPair(pub CryptoTypeId, pub Vec<u8>);
 
 #[cfg(feature = "std")]
-impl sp_std::fmt::Display for CryptoTypePublicPair {
-	fn fmt(&self, f: &mut sp_std::fmt::Formatter) -> sp_std::fmt::Result {
+impl cessp_std::fmt::Display for CryptoTypePublicPair {
+	fn fmt(&self, f: &mut cessp_std::fmt::Formatter) -> cessp_std::fmt::Result {
 		let id = match str::from_utf8(&(self.0).0[..]) {
 			Ok(id) => id.to_string(),
 			Err(_) => {

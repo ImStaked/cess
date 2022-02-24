@@ -3,7 +3,7 @@
 use super::*;
 use frame_benchmarking::benchmarks;
 
-type Header = sp_runtime::generic::Header<u64, sp_runtime::traits::BlakeTwo256>;
+type Header = cessp_runtime::generic::Header<u64, cessp_runtime::traits::BlakeTwo256>;
 
 benchmarks! {
 	check_equivocation_proof {

@@ -4,20 +4,20 @@ edition = '2018'
 license = 'Unlicense'
 name = 'cess-node-runtime'
 repository = '...'
-version = '3.0.0-monthly-2021-10'
+version = '3.0.0-monthly-2021-10-cess'
 
 [package.metadata.docs.rs]
 targets = ['x86_64-unknown-linux-gnu']
 
 [build-dependencies.substrate-wasm-builder]
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '5.0.0-dev'
 
 [dependencies.sp-io]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.codec]
@@ -33,285 +33,285 @@ version = '1.0'
 
 [dependencies.frame-benchmarking]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
+git = 'https://github.com/CESSProject/substrate.git'
 optional = true
-tag = 'monthly-2021-10'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.frame-executive]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.frame-support]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.frame-system]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.frame-system-benchmarking]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
+git = 'https://github.com/CESSProject/substrate.git'
 optional = true
-tag = 'monthly-2021-10'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.frame-system-rpc-runtime-api]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.hex-literal]
 optional = true
 version = '0.3.1'
 
-[dependencies.pallet-babe]
+[dependencies.pallet-rrsc]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-balances]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-grandpa]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-randomness-collective-flip]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-sudo]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-timestamp]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-transaction-payment]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-transaction-payment-rpc-runtime-api]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-api]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-block-builder]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
-[dependencies.sp-consensus-babe]
+[dependencies.cessp-consensus-rrsc]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '0.10.0-dev'
 
 [dependencies.sp-core]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-inherents]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-offchain]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-runtime]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-session]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-std]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-transaction-pool]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-version]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-im-online]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-session]
 default-features = false
 features = ['historical',]
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-authorship]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-authority-discovery]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-authority-discovery]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-offences]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-staking]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.frame-election-provider-support]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-npos-elections]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-election-provider-multi-phase]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-bags-list]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-membership]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-collective]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-treasury]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-bounties]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-staking-reward-curve]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.sp-staking]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-scheduler]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-contracts]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-contracts-primitives]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 [dependencies.pallet-contracts-rpc-runtime-api]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
+git = 'https://github.com/CESSProject/substrate.git'
+branch =  'monthly-2021-10-cess'
 version = '4.0.0-dev'
 
 
@@ -374,7 +374,7 @@ std = [
     'frame-support/std',
     'frame-system-rpc-runtime-api/std',
     'frame-system/std',
-    'pallet-babe/std',
+    'pallet-rrsc/std',
     'pallet-bags-list/std',
     'pallet-balances/std',
     'pallet-grandpa/std',
@@ -389,7 +389,7 @@ std = [
     'scale-info/std',
     'sp-api/std',
     'sp-block-builder/std',
-    'sp-consensus-babe/std',
+    'cessp-consensus-rrsc/std',
     'sp-core/std',
     'sp-inherents/std',
     'sp-offchain/std',

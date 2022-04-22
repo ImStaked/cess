@@ -34,8 +34,8 @@ use sp_core::{
 use codec::Decode;
 use sp_inherents::{CheckInherentsResult, InherentData};
 use sp_runtime::{
-	create_runtime_str, generic, impl_opaque_keys, curve::PiecewiseLinear,
-	traits::{AccountIdLookup, BlakeTwo256, Block as BlockT, IdentifyAccount, NumberFor, Verify, OpaqueKeys, },
+	create_runtime_str, generic, impl_opaque_keys,
+	traits::{AccountIdLookup, BlakeTwo256, Block as BlockT, IdentifyAccount, NumberFor, Verify, OpaqueKeys},
 	transaction_validity::{TransactionSource, TransactionValidity, TransactionPriority},
 	ApplyExtrinsicResult, MultiSignature, Perbill, Permill, Percent,
 };
@@ -68,7 +68,7 @@ use pallet_transaction_payment::CurrencyAdapter;
 use pallet_contracts::weights::WeightInfo;
 
 #[cfg(any(feature = "std", test))]
-pub use pallet_staking::StakerStatus;
+pub use pallet_cess_staking::StakerStatus;
 #[cfg(any(feature = "std", test))]
 pub use sp_runtime::BuildStorage;
 
@@ -131,7 +131,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	//   `spec_version`, and `authoring_version` are the same between Wasm and native.
 	// This value is set to 100 to notify Polkadot-JS App (https://polkadot.js.org/apps) to use
 	//   the compatible custom types.
-	spec_version: 100,
+	spec_version: 101,
 	impl_version: 1,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
@@ -239,7 +239,7 @@ parameter_types! {
 		})
 		.avg_block_initialization(AVERAGE_ON_INITIALIZE_RATIO)
 		.build_or_panic();
-	pub const SS58Prefix: u16 = 42;
+	pub const SS58Prefix: u16 = 11330;
 }
 
 // Configure FRAME pallets to include in runtime.
@@ -290,6 +290,7 @@ impl frame_system::Config for Runtime {
 	/// Weight information for the extrinsics of this pallet.
 	type SystemWeightInfo = ();
 	/// This is used as an identifier of the chain. 42 is the generic substrate prefix.
+	/// 11330 is the cess testnet prefix. 11331 is the cess mainnet prefix.
 	type SS58Prefix = SS58Prefix;
 	/// The set code logic, just the default since we're not a parachain.
 	type OnSetCode = ();
@@ -505,26 +506,14 @@ impl pallet_session::Config for Runtime {
 }
 
 impl pallet_session::historical::Config for Runtime {
-	type FullIdentification = pallet_staking::Exposure<AccountId, Balance>;
-	type FullIdentificationOf = pallet_staking::ExposureOf<Runtime>;
-}
-
-pallet_staking_reward_curve::build! {
-	const REWARD_CURVE: PiecewiseLinear<'static> = curve!(
-		min_inflation: 0_025_000,
-		max_inflation: 0_100_000,
-		ideal_stake: 0_500_000,
-		falloff: 0_050_000,
-		max_piece_count: 40,
-		test_precision: 0_005_000,
-	);
+	type FullIdentification = pallet_cess_staking::Exposure<AccountId, Balance>;
+	type FullIdentificationOf = pallet_cess_staking::ExposureOf<Runtime>;
 }
 
 parameter_types! {
 	pub const SessionsPerEra: sp_staking::SessionIndex = 6;
-	pub const BondingDuration: pallet_staking::EraIndex = 24 * 28;
-	pub const SlashDeferDuration: pallet_staking::EraIndex = 24 * 7; // 1/4 the bonding duration.
-	pub const RewardCurve: &'static PiecewiseLinear<'static> = &REWARD_CURVE;
+	pub const BondingDuration: pallet_cess_staking::EraIndex = 24 * 28;
+	pub const SlashDeferDuration: pallet_cess_staking::EraIndex = 24 * 7; // 1/4 the bonding duration.
 	pub const MaxNominatorRewardedPerValidator: u32 = 256;
 	pub OffchainRepeat: BlockNumber = 5;
 }
@@ -535,12 +524,23 @@ impl onchain::Config for Runtime {
 	type DataProvider = Staking;
 }
 
-impl pallet_staking::Config for Runtime {
+pub const ERAS_PER_YEAR: u64 = {
+	// Milliseconds per year for the Julian year (365.25 days).
+	const MILLISECONDS_PER_YEAR: u64 = 1000 * 3600 * 24 * 36525 / 100;
+	MILLISECONDS_PER_YEAR / MILLISECS_PER_BLOCK / (EPOCH_DURATION_IN_BLOCKS * SessionsPerEra::get()) as u64
+};
+
+impl pallet_cess_staking::Config for Runtime {
+	const ERAS_PER_YEAR: u64 = ERAS_PER_YEAR;
+	const FIRST_YEAR_VALIDATOR_REWARDS: Balance = 477_000_000 * CENTS;
+	const FIRST_YEAR_SMINER_REWARDS: Balance = 238_500_000 * CENTS;
+	const REWARD_DECREASE_RATIO: Perbill = Perbill::from_perthousand(841);
+	type SminerRewardPool = Sminer;
 	const MAX_NOMINATIONS: u32 = MAX_NOMINATIONS;
 	type Currency = Balances;
 	type UnixTime = Timestamp;
 	type CurrencyToVote = U128CurrencyToVote;
-	type RewardRemainder = Treasury;
+	type RewardRemainder = ();
 	type Event = Event;
 	type Slash = Treasury; // send the slashed funds to the treasury.
 	type Reward = (); // rewards are minted from the void
@@ -554,13 +554,13 @@ impl pallet_staking::Config for Runtime {
 		pallet_collective::EnsureProportionAtLeast<_3, _4, AccountId, CouncilCollective>,
 	>;
 	type SessionInterface = Self;
-	type EraPayout = pallet_staking::ConvertCurve<RewardCurve>;
+	type EraPayout = ();
 	type NextNewSession = Session;
 	type MaxNominatorRewardedPerValidator = MaxNominatorRewardedPerValidator;
 	type ElectionProvider = ElectionProviderMultiPhase;
 	type GenesisElectionProvider = onchain::OnChainSequentialPhragmen<Self>;
 	type SortedListProvider = BagsList;
-	type WeightInfo = pallet_staking::weights::SubstrateWeight<Runtime>;
+	type WeightInfo = pallet_cess_staking::weights::SubstrateWeight<Runtime>;
 }
 
 type EnsureRootOrHalfCouncil = EnsureOneOf<
@@ -812,6 +812,17 @@ impl pallet_file_bank::Config for Runtime {
 	type WeightInfo = pallet_file_bank::weights::SubstrateWeight<Runtime>;
 }
 
+parameter_types! {
+	pub const FileMapPalletId: PalletId = PalletId(*b"filmpdpt");
+}
+
+impl pallet_file_map::Config for Runtime {
+	type Currency = Balances;
+	// The ubiquitous event type.
+	type Event = Event;
+	type FileMapPalletId = FileMapPalletId;
+}
+
 /*** End This Block ***/
 
 //add contracts
@@ -850,6 +861,7 @@ impl pallet_contracts::Config for Runtime {
 	type CallStack = [pallet_contracts::Frame<Self>; 31];
 	type WeightPrice = pallet_transaction_payment::Pallet<Self>;
 	type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
+	//test for ink! 3.0 
 	type ChainExtension = ();
 	type DeletionQueueDepth = DeletionQueueDepth;
 	type DeletionWeightLimit = DeletionWeightLimit;
@@ -882,7 +894,7 @@ construct_runtime!(
 		Historical: pallet_session_historical::{Pallet},
 		Authorship: pallet_authorship::{Pallet, Call, Storage, Inherent},
 		Offences: pallet_offences::{Pallet, Storage, Event},
-		Staking: pallet_staking::{Pallet, Call, Config<T>, Storage, Event<T>},
+		Staking: pallet_cess_staking::{Pallet, Call, Config<T>, Storage, Event<T>},
 		ElectionProviderMultiPhase: pallet_election_provider_multi_phase::{Pallet, Call, Storage, Event<T>, ValidateUnsigned},
 		Council: pallet_collective::<Instance1>::{Pallet, Call, Storage, Origin<T>, Event<T>, Config<T>},
 		TechnicalCommittee: pallet_collective::<Instance2>::{Pallet, Call, Storage, Origin<T>, Event<T>, Config<T>},
@@ -895,7 +907,7 @@ construct_runtime!(
 		SegmentBook: pallet_segment_book::{Pallet, Call, Storage, Event<T>},
 		FileBank: pallet_file_bank::{Pallet,Call, Storage, Event<T>},
 		BagsList: pallet_bags_list::{Pallet,Call, Storage, Event<T>},
-
+		FileMap: pallet_file_map::{Pallet, Call, Storage, Event<T>},
 	}
 );
 
@@ -1167,6 +1179,8 @@ impl_runtime_apis! {
 			list_benchmark!(list, extra, pallet_contracts, Contracts);
 			list_benchmark!(list, extra, pallet_segment_book, SegmentBook);
 			list_benchmark!(list, extra, pallet_sminer, Sminer);
+			list_benchmark!(list, extra, pallet_collective::<Instance1>, Council);
+			list_benchmark!(list, extra, pallet_collective::<Instance2>, TechnicalCommittee);
 			// list_benchmark!(list, extra, pallet_template, TemplateModule);
 
 			/*** Add This Line ***/
@@ -1208,6 +1222,8 @@ impl_runtime_apis! {
 			add_benchmark!(params, batches, pallet_segment_book, SegmentBook);
 			add_benchmark!(params, batches, pallet_sminer, Sminer);
 			add_benchmark!(params, batches, pallet_contracts, Contracts);
+			add_benchmark!(params, batches, pallet_collective::<Instance1>, Council);
+			add_benchmark!(params, batches, pallet_collective::<Instance2>, TechnicalCommittee);
 			// add_benchmark!(params, batches, pallet_template, TemplateModule);
 
 			if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
@@ -1215,3 +1231,61 @@ impl_runtime_apis! {
 		}
 	}
 }
+
+//extension for ink! test
+// use codec::Encode;
+// use frame_support::log::{
+//     error,
+//     trace,
+// };
+
+// pub struct FetchRandomExtension;
+// use pallet_contracts::chain_extension::{
+//     ChainExtension,
+//     Environment,
+//     Ext,
+//     InitState,
+//     RetVal,
+//     SysConfig,
+//     UncheckedFrom,
+// };
+// use sp_runtime::DispatchError;
+
+// impl ChainExtension<Runtime> for FetchRandomExtension {
+//     fn call<E: Ext>(
+//         func_id: u32,
+//         env: Environment<E, InitState>,
+//     ) -> Result<RetVal, DispatchError>
+//     where
+//         <E::T as SysConfig>::AccountId:
+//             UncheckedFrom<<E::T as SysConfig>::Hash> + AsRef<[u8]>,
+//     {
+//         match func_id {
+//             1101 => {
+//                 let mut env = env.buf_in_buf_out();
+//                 let arg: [u8; 32] = env.read_as()?;
+//                 let random_seed = crate::RandomnessCollectiveFlip::random(&arg).0;
+//                 let random_slice = random_seed.encode();
+//                 trace!(
+//                     target: "runtime",
+//                     "[ChainExtension]|call|func_id:{:}",
+//                     func_id
+//                 );
+//                 env.write(&random_slice, false, None).map_err(|_| {
+//                     DispatchError::Other("ChainExtension failed to call random")
+//                 })?;
+//             }
+
+//             _ => {
+//                 error!("Called an unregistered `func_id`: {:}", func_id);
+//                 return Err(DispatchError::Other("Unimplemented func_id"))
+//             }
+//         }
+//         Ok(RetVal::Converging(0))
+//     }
+
+//     fn enabled() -> bool {
+//         true
+//     }
+// }
+

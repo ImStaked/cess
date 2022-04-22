@@ -2,9 +2,11 @@
 
 [![Substrate version](https://img.shields.io/badge/Substrate-3.0.0-blue?logo=Parity%20Substrate)](https://substrate.dev/) [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](#LICENSE)
 
----------🌌---------**An infrastructure of decentralized cloud data network built with [Substrate](https://substrate.dev/)**--------🌌--------
 
-----------------🌌----------------**Learn more at [cess.cloud](http://cess.cloud/) & with [white-paper](https://github.com/CESSProject/Whitepaper)**----------------🌌--------------
+<a href='https://web3.foundation/'><img width='205' alt='web3f_grants_badge.png' src='https://github.com/heyworld88/gitskills/blob/main/web3f_grants_badge.png'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='https://builders.parity.io/'><img width='240' src='https://github.com/heyworld88/gitskills/blob/main/sbp_grants_badge.png'></a>
+
+  
+**[cess.cloud](http://cess.cloud/) is to provide the capabilities of a new global decentralized cloud data storage network by building with the infrastructure of decentralized cloud data network of the [substrate](https://substrate.dev/) while maintaining the data security and reliability guarantees inherent to blockchain technology. Learn more at [white-paper](https://github.com/CESSProject/Whitepaper).** 
 
 ## Getting Started
 
@@ -91,8 +93,8 @@ Now you can launch node again:
 Install [Docker](https://docs.docker.com/get-docker/) first, and run the following command to start a node on the cess-testnet:
 
 ```
-docker pull cesstech/cess-testnet:v0.1.3
-docker run --network host cesstech/cess-testnet:v0.1.3 ./cess/target/release/cess-node --base-path /tmp/cess --chain cess-testnet
+docker pull cesslab/cess-testnet:0.3.0
+docker run -itd --name=cess --network=host cesslab/cess_testnet:0.3.0 && docker logs -f cess
 ```
 
 ## Storage Mining
@@ -129,6 +131,5 @@ cargo test -p pallet-file-bank --features runtime-benchmarks
 * [Sminer](https://github.com/CESSProject/cess/tree/main/c-pallets/sminer)
 
 ## Contribute
-
 
 Please follow the contributions guidelines as outlined in [`docs/CONTRIBUTING.adoc`](https://github.com/CESSProject/cess/tree/main/docs/CONTRIBUTING.adoc). In all communications and contributions, this project follows the [Contributor Covenant Code of Conduct](https://github.com/paritytech/substrate/blob/master/docs/CODE_OF_CONDUCT.md).

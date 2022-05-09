@@ -18,35 +18,35 @@ codec = { package = "parity-scale-codec", version = "3.0.0", default-features = 
 	"derive",
 ] }
 scale-info = { version = "2.0.1", default-features = false, features = ["derive"] }
-sp-std = { version = "4.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-sp-io = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-sp-runtime = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-sp-staking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-frame-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
+sp-std = { version = "4.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+sp-io = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+sp-runtime = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+sp-staking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+frame-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
 pallet-session = { version = "4.0.0-dev", default-features = false, features = [
 	"historical",
-], git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-pallet-authorship = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-sp-application-crypto = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-frame-election-provider-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
+], git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+pallet-authorship = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+sp-application-crypto = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+frame-election-provider-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
 log = { version = "0.4.14", default-features = false }
 
 # Optional imports for benchmarking
-frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess", optional = true }
+frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev", optional = true }
 rand_chacha = { version = "0.2", default-features = false, optional = true }
 
 [dev-dependencies]
-sp-tracing = { version = "5.0.0", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-sp-core = { version = "6.0.0", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-sp-npos-elections = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-pallet-balances = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-pallet-timestamp = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-pallet-staking-reward-curve = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-pallet-bags-list = { version = "4.0.0-dev", features = ["runtime-benchmarks"], git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-substrate-test-utils = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-frame-benchmarking = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
-frame-election-provider-support = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "monthly-2022-04-cess" }
+sp-tracing = { version = "5.0.0", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+sp-core = { version = "6.0.0", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+sp-npos-elections = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+pallet-balances = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+pallet-timestamp = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+pallet-staking-reward-curve = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+pallet-bags-list = { version = "4.0.0-dev", features = ["runtime-benchmarks"], git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+substrate-test-utils = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+frame-benchmarking = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+frame-election-provider-support = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
 rand_chacha = { version = "0.2" }
 
 [features]

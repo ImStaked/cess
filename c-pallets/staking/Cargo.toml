@@ -18,35 +18,35 @@ codec = { package = "parity-scale-codec", version = "3.0.0", default-features = 
 	"derive",
 ] }
 scale-info = { version = "2.0.1", default-features = false, features = ["derive"] }
-sp-std = { version = "4.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-sp-io = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-sp-runtime = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-sp-staking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-frame-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+sp-std = { version = "4.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+sp-io = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+sp-runtime = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+sp-staking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+frame-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
 pallet-session = { version = "4.0.0-dev", default-features = false, features = [
 	"historical",
-], git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-pallet-authorship = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-sp-application-crypto = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-frame-election-provider-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+], git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+pallet-authorship = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+sp-application-crypto = { version = "6.0.0", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+frame-election-provider-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
 log = { version = "0.4.14", default-features = false }
 
 # Optional imports for benchmarking
-frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev", optional = true }
+frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std", optional = true }
 rand_chacha = { version = "0.2", default-features = false, optional = true }
 
 [dev-dependencies]
-sp-tracing = { version = "5.0.0", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-sp-core = { version = "6.0.0", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-sp-npos-elections = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-pallet-balances = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-pallet-timestamp = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-pallet-staking-reward-curve = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-pallet-bags-list = { version = "4.0.0-dev", features = ["runtime-benchmarks"], git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-substrate-test-utils = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-frame-benchmarking = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
-frame-election-provider-support = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev" }
+sp-tracing = { version = "5.0.0", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+sp-core = { version = "6.0.0", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+sp-npos-elections = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+pallet-balances = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+pallet-timestamp = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+pallet-staking-reward-curve = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+pallet-bags-list = { version = "4.0.0-dev", features = ["runtime-benchmarks"], git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+substrate-test-utils = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+frame-benchmarking = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
+frame-election-provider-support = { version = "4.0.0-dev", git = "https://github.com/CESSProject/substrate", branch = "yeou-dev-frame-std" }
 rand_chacha = { version = "0.2" }
 
 [features]
